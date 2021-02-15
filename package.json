@@ -1,0 +1,23 @@
+{
+  "name": "game-of-life",
+  "version": "1.0.0",
+  "description": "Conway's Game of Life - cellular automata",
+  "default": "src/index.html",
+  "scripts": {
+    "watch:sass": "sass src/sass/main.scss src/css/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mofunkles/game-of-life.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mofunkles/game-of-life/issues"
+  },
+  "homepage": "https://github.com/Mofunkles/game-of-life#readme",
+  "devDependencies": {
+    "sass": "^1.32.7"
+  }
+}
