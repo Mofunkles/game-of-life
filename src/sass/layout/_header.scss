@@ -1,0 +1,22 @@
+.header {
+  grid-column: center-start / center-end;
+
+  @include glassmorphism;
+  width: 40rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 2rem;
+
+  &__title {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+
+    &--sub {
+      display: block;
+      color: rgb(var(--primary-color));
+      font-size: 2rem;
+      line-height: 0.5;
+    }
+  }
+}

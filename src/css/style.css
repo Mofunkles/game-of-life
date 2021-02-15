@@ -1,3 +1,199 @@
+:root {
+  --primary-color: 191, 54, 57;
+  --secondary-color: 254, 96, 57;
+  --light-color: 255, 255, 255;
+  --dark-color: 45, 50, 53;
+}
 
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  background-color: rgb(var(--dark-color));
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto [center-start] 98.6rem [center-end] auto;
+  grid-template-rows: auto 1fr [bottom-start] auto [bottom-end];
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgb(var(--dark-color));
+}
+
+::selection {
+  color: rgb(var(--light-color));
+  background-color: rgb(var(--primary-color));
+}
+
+.button {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border-radius: 5rem;
+  border: 0;
+  height: 5rem;
+  width: 12rem;
+  background-color: rgb(var(--light-color));
+  outline: none;
+  transition: transform 0.3s;
+  backface-visibility: hidden;
+}
+.button--active {
+  color: rgb(var(--light-color));
+  background-color: rgb(var(--primary-color));
+}
+.button--inactive {
+  color: rgb(var(--light-color));
+  background-color: rgb(var(--dark-color));
+}
+.button--small {
+  height: 2.5rem;
+  width: 2.5rem;
+  color: rgb(var(--secondary-color));
+}
+.button:active {
+  transform: translateY(0.1rem) scale(0.95);
+}
+
+.grid-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.4;
+  background-image: linear-gradient(rgb(var(--secondary-color)) 2px, transparent 2px), linear-gradient(to right, rgb(var(--secondary-color)) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.rules {
+  background-color: rgba(var(--light-color), 0.3);
+  border: 1px solid rgba(var(--light-color), 0.15);
+  box-shadow: 0 0.5rem 3rem 1rem rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(0.3rem);
+  width: 30rem;
+  height: 40rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 2rem;
+  padding: 1rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+.rules__title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  margin-top: 1rem;
+}
+.rules__link:link, .rules__link:visited {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: right;
+  color: rgb(var(--secondary-color));
+  text-decoration: none;
+  margin-bottom: 2rem;
+  margin-right: 1.4rem;
+}
+.rules__header {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.rules__list {
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding-left: 1.5rem;
+}
+.rules__list li:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+.rules.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.control-panel {
+  grid-column: center-start/center-end;
+  grid-row: bottom-start/bottom-end;
+  background-color: rgba(var(--light-color), 0.3);
+  border: 1px solid rgba(var(--light-color), 0.15);
+  box-shadow: 0 0.5rem 3rem 1rem rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(0.3rem);
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  padding: 2rem 4rem;
+  position: relative;
+}
+.control-panel__statistics {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 2rem;
+}
+.control-panel__text {
+  display: flex;
+  justify-content: space-evenly;
+}
+.control-panel__buttons {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+.control-panel__buttons .button:not(:first-child) {
+  margin-left: 2rem;
+}
+.control-panel__simulation {
+  grid-column: 1/2;
+}
+.control-panel__initial-state {
+  grid-column: 3/4;
+}
+
+.statistic {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+.statistic--number {
+  display: block;
+  color: rgb(var(--primary-color));
+}
+
+.header {
+  grid-column: center-start/center-end;
+  background-color: rgba(var(--light-color), 0.3);
+  border: 1px solid rgba(var(--light-color), 0.15);
+  box-shadow: 0 0.5rem 3rem 1rem rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(0.3rem);
+  width: 40rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+.header__title {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.header__title--sub {
+  display: block;
+  color: rgb(var(--primary-color));
+  font-size: 2rem;
+  line-height: 0.5;
+}
 
 /*# sourceMappingURL=style.css.map */

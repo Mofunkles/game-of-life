@@ -4,7 +4,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Conway's Game of Life - Cellular Automata</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <h1 class="header__title">
+        <span class="header__title--sub">Conway's</span>
+        Game of Life
+      </h1>
+    </header>
+
+    <section class="rules hidden">
+      <h2 class="rules__title">Conway's Game of Life</h2>
+      <a class="rules__link" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">WIKIPEDIA</a>
+      <h3 class="rules__header">Rules</h3>
+      <ol class="rules__list">
+        <li>Any live cell with fewer than two live neighbours dies.</li>
+        <li>Any live cell with two or three live neighbours lives.</li>
+        <li>Any live cell with more than three live neighbours dies.</li>
+        <li>Any dead cell with exactly three live neighbours becomes a live cell.</li>
+      </ol>
+    </section>
+
+    <footer class="control-panel">
+      <div class="control-panel__statistics">
+        <div class="control-panel__text">
+          <p class="statistic"><span class="statistic--number">0</span>Generations</p>
+          <p class="statistic"><span class="statistic--number">0</span>Live cells</p>
+        </div>
+        <button class="button button--small">?</button>
+      </div>
+      <div class="control-panel__buttons">
+        <div class="control-panel__simulation">
+          <button class="button button--active">Start</button>
+          <button class="button button--inactive">Stop</button>
+        </div>
+        <div class="control-panel__initial-state">
+          <button class="button button--initial">Clear</button>
+          <button class="button button--initial">Fill</button>
+          <button class="button button--initial">Random</button>
+          <button class="button button--initial">Glider Gun</button>
+        </div>
+      </div>
+    </footer>
+    <section class="grid-container"></section>
+  </body>
 </html>

@@ -1,0 +1,6 @@
+@mixin glassmorphism {
+  background-color: rgba(var(--light-color), 0.3);
+  border: 1px solid rgba(var(--light-color), 0.15);
+  box-shadow: 0 0.5rem 3rem 1rem rgba(black, 0.45);
+  backdrop-filter: blur(0.3rem);
+}

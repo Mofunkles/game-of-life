@@ -1,0 +1,33 @@
+.button {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border-radius: 5rem;
+  border: 0;
+  height: 5rem;
+  width: 12rem;
+  background-color: rgb(var(--light-color));
+  outline: none;
+  transition: transform 0.3s;
+  backface-visibility: hidden;
+
+  &--active {
+    color: rgb(var(--light-color));
+    background-color: rgb(var(--primary-color));
+  }
+
+  &--inactive {
+    color: rgb(var(--light-color));
+    background-color: rgb(var(--dark-color));
+  }
+
+  &--small {
+    height: 2.5rem;
+    width: 2.5rem;
+    color: rgb(var(--secondary-color));
+  }
+
+  &:active {
+    transform: translateY(0.1rem) scale(0.95);
+  }
+}

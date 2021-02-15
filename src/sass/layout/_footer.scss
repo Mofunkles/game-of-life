@@ -1,0 +1,50 @@
+.control-panel {
+  grid-column: center-start / center-end;
+  grid-row: bottom-start / bottom-end;
+
+  @include glassmorphism;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  padding: 2rem 4rem;
+  position: relative;
+
+  &__statistics {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin-bottom: 2rem;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+
+    & .button:not(:first-child) {
+      margin-left: 2rem;
+    }
+  }
+
+  &__simulation {
+    grid-column: 1 / 2;
+  }
+
+  &__initial-state {
+    grid-column: 3 / 4;
+  }
+}
+
+.statistic {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+
+  &--number {
+    display: block;
+    color: rgb(var(--primary-color));
+  }
+}

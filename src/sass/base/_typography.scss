@@ -1,0 +1,12 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.45;
+
+  color: rgb(var(--dark-color));
+}
+
+::selection {
+  color: rgb(var(--light-color));
+  background-color: rgb(var(--primary-color));
+}
