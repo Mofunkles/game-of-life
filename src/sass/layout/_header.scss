@@ -7,16 +7,43 @@
   padding: 2rem;
   border-radius: 2rem;
 
+  @include responsive(large) {
+    width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+    padding: 1rem;
+  }
+
   &__title {
     font-size: 5rem;
     font-weight: 700;
     line-height: 1;
+
+    @include responsive(large) {
+      text-align: center;
+    }
+
+    @include responsive(medium) {
+      font-size: 4rem;
+    }
+
+    @include responsive(small) {
+      font-size: 3rem;
+    }
 
     &--sub {
       display: block;
       color: rgb(var(--primary-color));
       font-size: 2rem;
       line-height: 0.5;
+
+      @include responsive(medium) {
+        font-size: 1.6rem;
+      }
+
+      @include responsive(small) {
+        font-size: 1.2rem;
+      }
     }
   }
 }
