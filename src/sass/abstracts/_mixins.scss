@@ -4,3 +4,29 @@
   box-shadow: 0 0.5rem 3rem 1rem rgba(black, 0.45);
   backdrop-filter: blur(0.3rem);
 }
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'largest' {
+    @media (max-width: 70em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 'large' {
+    @media (max-width: 61.625em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 'medium' {
+    @media (max-width: 43.75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 'small' {
+    @media (max-width: 28.125em) {
+      @content;
+    }
+  }
+}

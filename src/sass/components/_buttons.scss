@@ -11,6 +11,11 @@
   transition: transform 0.3s;
   backface-visibility: hidden;
 
+  @include responsive(small) {
+    height: 4rem;
+    width: 10rem;
+  }
+
   &--active {
     color: rgb(var(--light-color));
     background-color: rgb(var(--primary-color));
