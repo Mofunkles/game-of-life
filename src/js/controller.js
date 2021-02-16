@@ -1,5 +1,7 @@
 import * as model from './model.js';
 import GridView from './view/gridView.js';
+import HelpView from './view/helpView.js';
+import PanelView from './view/panelView.js';
 
 const controlWindowResolution = function (event) {
   // 1. destructure window resize event
@@ -15,9 +17,25 @@ const controlWindowResolution = function (event) {
 const controlGenerateGrid = function () {
   // 1. generate grid object
   // 2. render grid from grid object
+  // 3. update panel statistics
 
   model.generateGrid();
   GridView.renderGrid(model.state.grid);
+  PanelView.updateGenerations(model.state.grid.generation);
+  PanelView.updateLiveCells(model.state.grid.liveCells);
+};
+
+const controlShowHelp = function () {
+  HelpView.toggleVisibility();
+};
+
+const controlSimulation = function () {
+  setInterval(() => {
+    model.simulateGeneration();
+    GridView.renderGrid(model.state.grid);
+    PanelView.updateGenerations(model.state.grid.generation);
+    PanelView.updateLiveCells(model.state.grid.liveCells);
+  }, 100);
 };
 
 // Initialise
@@ -25,4 +43,11 @@ const controlGenerateGrid = function () {
   controlGenerateGrid();
   const resize = new ResizeObserver(controlWindowResolution);
   resize.observe(GridView.parentElement);
+
+  // send multiple handlers as an object
+  PanelView.addHandlerButton({
+    help: controlShowHelp,
+    start: controlSimulation,
+  });
+  HelpView.addHandlerShowHelp(controlShowHelp);
 })();

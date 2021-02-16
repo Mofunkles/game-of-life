@@ -33,9 +33,15 @@
 
     &--sub {
       display: block;
-      color: rgb(var(--primary-color));
+      width: 55%;
+      background-color: rgb(var(--primary-color));
+      color: rgb(var(--light-color));
       font-size: 2rem;
       line-height: 0.5;
+
+      @include responsive(large) {
+        width: 100%;
+      }
 
       @include responsive(medium) {
         font-size: 1.6rem;

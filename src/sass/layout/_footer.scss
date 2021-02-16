@@ -5,14 +5,11 @@
   @include glassmorphism;
   border-top-left-radius: 4rem;
   border-top-right-radius: 4rem;
-  padding: 2rem 4rem;
+  padding: 2rem 4rem 4rem 4rem;
   position: relative;
 
   @include responsive(large) {
     border-radius: 0;
-  }
-
-  @include responsive(medium) {
     padding: 2rem;
   }
 
@@ -78,12 +75,12 @@
 .statistic {
   font-size: 2rem;
   font-weight: 700;
-  line-height: 1;
   text-align: center;
 
   &--number {
     display: block;
-    color: rgb(var(--primary-color));
+    background-color: rgb(var(--primary-color));
+    color: rgb(var(--light-color));
 
     @include responsive(large) {
       display: initial;
