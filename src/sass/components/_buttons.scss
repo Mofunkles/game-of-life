@@ -16,14 +16,9 @@
     width: 10rem;
   }
 
-  &--active {
+  &--control {
     color: rgb(var(--light-color));
     background-color: rgb(var(--primary-color));
-  }
-
-  &--inactive {
-    color: rgb(var(--light-color));
-    background-color: rgb(var(--dark-color));
   }
 
   &--small {
@@ -34,5 +29,10 @@
 
   &:active {
     transform: translateY(0.1rem) scale(0.95);
+  }
+
+  &:disabled {
+    color: rgb(var(--medium-color));
+    background-color: rgb(var(--dark-color));
   }
 }

@@ -1,25 +1,34 @@
 class PanelView {
   parentElement = document.querySelector('.control-panel');
+  buttonStart = document.querySelector('.button-start');
+  buttonStop = document.querySelector('.button-stop');
 
   addHandlerButton(handlers) {
     this.parentElement.addEventListener('click', event => {
       const clicked = event.target.closest('.button');
       if (!clicked) return;
 
-      if (clicked.dataset.button === 'help') handlers.help();
-
-      if (
-        clicked.dataset.button === 'start' &&
-        clicked.classList.contains('button--active')
-      ) {
-        const stop = this.parentElement.querySelector('.button--inactive');
-        stop.classList.remove('button--inactive');
-        stop.classList.add('button--active');
-        clicked.classList.remove('button--active');
-        clicked.classList.add('button--inactive');
+      if (clicked.dataset.button === 'start' && !clicked.disabled) {
+        this.toggleControlButton();
         handlers.start();
       }
+
+      if (clicked.dataset.button === 'stop' && !clicked.disabled) {
+        this.toggleControlButton();
+        handlers.stop();
+      }
+
+      if (clicked.dataset.button === 'clear') handlers.clear();
+      if (clicked.dataset.button === 'fill') handlers.fill();
+      if (clicked.dataset.button === 'random') handlers.random();
+      if (clicked.dataset.button === 'gosper') handlers.gosper();
+      if (clicked.dataset.button === 'help') handlers.help();
     });
+  }
+
+  toggleControlButton() {
+    this.buttonStart.disabled = !this.buttonStart.disabled;
+    this.buttonStop.disabled = !this.buttonStop.disabled;
   }
 
   updateGenerations(number) {

@@ -1,9 +1,11 @@
 import { GRID_SIZE } from './config.js';
 import { randomBinary } from './utility.js';
+import { gosper } from './patterns.js';
 
 export const state = {
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
+  simulation: null,
   grid: {
     cells: [],
     cellsBuffer: [],
@@ -17,7 +19,36 @@ export const state = {
   },
 };
 
-export const generateGrid = function () {
+const resetGrid = function () {
+  state.grid.cells = [];
+  state.grid.cellsBuffer = [];
+  state.grid.cellNeighboursMap = [];
+  state.grid.cellWidth = 0;
+  state.grid.cellHeight = 0;
+  state.grid.cellSize = 0;
+  state.grid.cellCount = 0;
+  state.grid.generation = 0;
+  state.grid.liveCells = 0;
+};
+
+const generateCells = function (pattern) {
+  //1. loop over cell count
+  //2. generate corresponding pattern
+  //3. map cell neighbours for each cell
+
+  for (let i = 0; i < state.grid.cellCount; i++) {
+    if (pattern === 'clear') state.grid.cells.push(0);
+    if (pattern === 'fill') state.grid.cells.push(1);
+    if (pattern === 'random') state.grid.cells.push(randomBinary());
+    if (pattern === 'gosper') state.grid.cells.push(0);
+    if (state.grid.cells[i] === 1) state.grid.liveCells++;
+    state.grid.cellNeighboursMap.push(cellNeighbours(i));
+  }
+};
+
+export const generateGrid = function (pattern) {
+  resetGrid();
+
   // determine long / short axis
   const long = state.screenWidth < state.screenHeight ? 'Height' : 'Width';
   const short = long === 'Height' ? 'Width' : 'Height';
@@ -33,7 +64,7 @@ export const generateGrid = function () {
   );
   state.grid.cellCount = state.grid.cellWidth * state.grid.cellHeight;
 
-  generateCells();
+  generateCells(pattern);
 };
 
 const checkRange = function (index) {
@@ -100,18 +131,6 @@ const cellNeighbours = function (index) {
   neighbours.push(checkBottomRight(index) ? index + width + 1 : null);
 
   return neighbours;
-};
-
-export const generateCells = function (pattern = 'random') {
-  //1. loop over cell count
-  //2. generate corresponding pattern
-  //3. map cell neighbours for each cell
-
-  for (let i = 0; i < state.grid.cellCount; i++) {
-    if (pattern === 'random') state.grid.cells.push(randomBinary());
-    if (state.grid.cells[i] === 1) state.grid.liveCells++;
-    state.grid.cellNeighboursMap.push(cellNeighbours(i));
-  }
 };
 
 const neighboursCount = function (index) {
