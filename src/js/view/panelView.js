@@ -1,12 +1,13 @@
 class PanelView {
   parentElement = document.querySelector('.control-panel');
 
-  addHandlerShowHelp(handler) {
+  addHandlerButton(handlers) {
     this.parentElement.addEventListener('click', event => {
       const clicked = event.target.closest('.button');
-      if (!clicked || clicked.dataset.button !== 'help') return;
+      if (!clicked) return;
 
-      handler();
+      if (clicked.dataset.button === 'help') handlers.help();
+      if (clicked.dataset.button === 'start') handlers.start();
     });
   }
 }

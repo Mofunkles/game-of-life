@@ -2,8 +2,6 @@ class GridView {
   parentElement = document.querySelector('.grid-container');
 
   renderGrid(grid) {
-    console.log(grid);
-
     this.parentElement.style.gridTemplateColumns = `repeat(${grid.cellWidth}, ${grid.cellSize}px)`;
     this.parentElement.style.gridTemplateRows = `repeat(${grid.cellHeight}, ${grid.cellSize}px)`;
 

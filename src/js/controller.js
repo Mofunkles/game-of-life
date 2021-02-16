@@ -26,12 +26,20 @@ const controlShowHelp = function () {
   HelpView.toggleVisibility();
 };
 
+const controlSimulation = function () {
+  model.simulateGeneration();
+};
+
 // Initialise
 (function () {
   controlGenerateGrid();
   const resize = new ResizeObserver(controlWindowResolution);
   resize.observe(GridView.parentElement);
 
-  PanelView.addHandlerShowHelp(controlShowHelp);
+  // send multiple handlers as an object
+  PanelView.addHandlerButton({
+    help: controlShowHelp,
+    start: controlSimulation,
+  });
   HelpView.addHandlerShowHelp(controlShowHelp);
 })();
