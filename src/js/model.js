@@ -111,6 +111,33 @@ export const generateCells = function (pattern = 'random') {
   }
 };
 
+const neighboursCount = function (index) {
+  return state.grid.cellNeighboursMap[index]
+    .filter(cell => cell != null)
+    .map(cell => state.grid.cells[cell])
+    .reduce((sum, cell) => (sum += cell), 0);
+};
+
+const deadOrAlive = function (cell, neighbours) {
+  if (
+    (cell === 1 && neighbours >= 2 && neighbours <= 3) ||
+    (cell === 0 && neighbours === 3)
+  )
+    return true;
+  return false;
+};
+
 export const simulateGeneration = function () {
+  // 1. generate cell buffer
+  // 2. apply rules to buffer
+  // 3. swap buffer
+
   state.grid.cellsBuffer = [...state.grid.cells];
+  state.grid.cells.forEach((cell, index) => {
+    state.grid.cellsBuffer[index] = deadOrAlive(cell, neighboursCount(index))
+      ? 1
+      : 0;
+  });
+  state.grid.cells = [...state.grid.cellsBuffer];
+  console.log('tick');
 };

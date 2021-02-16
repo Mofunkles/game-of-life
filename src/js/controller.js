@@ -27,7 +27,10 @@ const controlShowHelp = function () {
 };
 
 const controlSimulation = function () {
-  model.simulateGeneration();
+  setInterval(() => {
+    model.simulateGeneration();
+    GridView.renderGrid(model.state.grid);
+  }, 100);
 };
 
 // Initialise
