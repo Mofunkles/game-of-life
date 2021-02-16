@@ -5,8 +5,3 @@ body {
 
   color: rgb(var(--dark-color));
 }
-
-::selection {
-  color: rgb(var(--light-color));
-  background-color: rgb(var(--primary-color));
-}

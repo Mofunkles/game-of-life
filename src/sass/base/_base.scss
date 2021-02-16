@@ -13,6 +13,7 @@ body {
   background-color: rgb(var(--dark-color));
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 
   display: grid;
   grid-template-columns: minmax(5vw, auto) [center-start] minmax(auto, 98.6rem) [center-end] minmax(
@@ -24,4 +25,9 @@ body {
   @include responsive(largest) {
     grid-template-columns: auto [center-start] minmax(auto, 98.6rem) [center-end] auto;
   }
+}
+
+::selection {
+  color: rgb(var(--light-color));
+  background-color: rgb(var(--primary-color));
 }
