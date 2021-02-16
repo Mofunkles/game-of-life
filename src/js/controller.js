@@ -1,5 +1,7 @@
 import * as model from './model.js';
 import GridView from './view/gridView.js';
+import HelpView from './view/helpView.js';
+import PanelView from './view/panelView.js';
 
 const controlWindowResolution = function (event) {
   // 1. destructure window resize event
@@ -20,9 +22,16 @@ const controlGenerateGrid = function () {
   GridView.renderGrid(model.state.grid);
 };
 
+const controlShowHelp = function () {
+  HelpView.toggleVisibility();
+};
+
 // Initialise
 (function () {
   controlGenerateGrid();
   const resize = new ResizeObserver(controlWindowResolution);
   resize.observe(GridView.parentElement);
+
+  PanelView.addHandlerShowHelp(controlShowHelp);
+  HelpView.addHandlerShowHelp(controlShowHelp);
 })();
