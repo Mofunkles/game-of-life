@@ -22,7 +22,15 @@ class PanelView {
     });
   }
 
-  updateGenerations(number) {}
+  updateGenerations(number) {
+    const generations = this.parentElement.querySelector('.generations-number');
+    generations.textContent = number;
+  }
+
+  updateLiveCells(number) {
+    const liveCells = this.parentElement.querySelector('.livecells-number');
+    liveCells.textContent = number;
+  }
 }
 
 export default new PanelView();

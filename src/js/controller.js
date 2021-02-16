@@ -17,9 +17,12 @@ const controlWindowResolution = function (event) {
 const controlGenerateGrid = function () {
   // 1. generate grid object
   // 2. render grid from grid object
+  // 3. update panel statistics
 
   model.generateGrid();
   GridView.renderGrid(model.state.grid);
+  PanelView.updateGenerations(model.state.grid.generation);
+  PanelView.updateLiveCells(model.state.grid.liveCells);
 };
 
 const controlShowHelp = function () {
@@ -30,6 +33,8 @@ const controlSimulation = function () {
   setInterval(() => {
     model.simulateGeneration();
     GridView.renderGrid(model.state.grid);
+    PanelView.updateGenerations(model.state.grid.generation);
+    PanelView.updateLiveCells(model.state.grid.liveCells);
   }, 100);
 };
 

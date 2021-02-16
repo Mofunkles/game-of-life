@@ -12,6 +12,8 @@ export const state = {
     cellHeight: 0,
     cellSize: 0,
     cellCount: 0,
+    generation: 0,
+    liveCells: 0,
   },
 };
 
@@ -107,6 +109,7 @@ export const generateCells = function (pattern = 'random') {
 
   for (let i = 0; i < state.grid.cellCount; i++) {
     if (pattern === 'random') state.grid.cells.push(randomBinary());
+    if (state.grid.cells[i] === 1) state.grid.liveCells++;
     state.grid.cellNeighboursMap.push(cellNeighbours(i));
   }
 };
@@ -119,11 +122,14 @@ const neighboursCount = function (index) {
 };
 
 const deadOrAlive = function (cell, neighbours) {
-  if (
-    (cell === 1 && neighbours >= 2 && neighbours <= 3) ||
-    (cell === 0 && neighbours === 3)
-  )
+  // apply the game rules
+  if (cell === 1 && neighbours >= 2 && neighbours <= 3) return true;
+  if (cell === 0 && neighbours === 3) {
+    state.grid.liveCells++;
     return true;
+  }
+
+  if (cell === 1) state.grid.liveCells--;
   return false;
 };
 
@@ -139,5 +145,5 @@ export const simulateGeneration = function () {
       : 0;
   });
   state.grid.cells = [...state.grid.cellsBuffer];
-  console.log('tick');
+  state.grid.generation++;
 };
