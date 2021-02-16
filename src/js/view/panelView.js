@@ -8,20 +8,27 @@ class PanelView {
       const clicked = event.target.closest('.button');
       if (!clicked) return;
 
-      if (clicked.dataset.button === 'help') handlers.help();
-
       if (clicked.dataset.button === 'start' && !clicked.disabled) {
-        clicked.disabled = true;
-        this.buttonStop.disabled = false;
+        this.toggleControlButton();
         handlers.start();
       }
 
       if (clicked.dataset.button === 'stop' && !clicked.disabled) {
-        clicked.disabled = true;
-        this.buttonStart.disabled = false;
+        this.toggleControlButton();
         handlers.stop();
       }
+
+      if (clicked.dataset.button === 'clear') handlers.clear();
+      if (clicked.dataset.button === 'fill') handlers.fill();
+      if (clicked.dataset.button === 'random') handlers.random();
+      if (clicked.dataset.button === 'gosper') handlers.gosper();
+      if (clicked.dataset.button === 'help') handlers.help();
     });
+  }
+
+  toggleControlButton() {
+    this.buttonStart.disabled = !this.buttonStart.disabled;
+    this.buttonStop.disabled = !this.buttonStop.disabled;
   }
 
   updateGenerations(number) {

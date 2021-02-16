@@ -14,12 +14,12 @@ const controlWindowResolution = function (event) {
   model.state.screenHeight = height;
 };
 
-const controlGenerateGrid = function () {
+const controlGenerateGrid = function (pattern = 'random') {
   // 1. generate grid object
   // 2. render grid from grid object
   // 3. update panel statistics
 
-  model.generateGrid();
+  model.generateGrid(pattern);
   GridView.renderGrid(model.state.grid);
   PanelView.updateGenerations(model.state.grid.generation);
   PanelView.updateLiveCells(model.state.grid.liveCells);
@@ -40,6 +40,43 @@ const controlStartSimulation = function () {
 
 const controlStopSimulation = function () {
   clearInterval(model.state.simulation);
+  model.state.simulation = null;
+};
+
+const controlInitialClear = function () {
+  if (model.state.simulation) {
+    controlStopSimulation();
+    PanelView.toggleControlButton();
+  }
+
+  controlGenerateGrid('clear');
+};
+
+const controlInitialFill = function () {
+  if (model.state.simulation) {
+    controlStopSimulation();
+    PanelView.toggleControlButton();
+  }
+
+  controlGenerateGrid('fill');
+};
+
+const controlInitialRandom = function () {
+  if (model.state.simulation) {
+    controlStopSimulation();
+    PanelView.toggleControlButton();
+  }
+
+  controlGenerateGrid('random');
+};
+
+const controlInitialGosper = function () {
+  if (model.state.simulation) {
+    controlStopSimulation();
+    PanelView.toggleControlButton();
+  }
+
+  controlGenerateGrid('gosper');
 };
 
 // Initialise
@@ -53,6 +90,10 @@ const controlStopSimulation = function () {
     help: controlShowHelp,
     start: controlStartSimulation,
     stop: controlStopSimulation,
+    clear: controlInitialClear,
+    fill: controlInitialFill,
+    random: controlInitialRandom,
+    gosper: controlInitialGosper,
   });
   HelpView.addHandlerShowHelp(controlShowHelp);
 })();
