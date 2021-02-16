@@ -7,25 +7,25 @@
 
 @mixin responsive($breakpoint) {
   @if $breakpoint == 'largest' {
-    @media (max-width: 70em) {
+    @media (max-width: $largest) {
       @content;
     }
   }
 
   @if $breakpoint == 'large' {
-    @media (max-width: 61.625em) {
+    @media (max-width: $large) {
       @content;
     }
   }
 
   @if $breakpoint == 'medium' {
-    @media (max-width: 43.75em) {
+    @media (max-width: $medium) {
       @content;
     }
   }
 
   @if $breakpoint == 'small' {
-    @media (max-width: 28.125em) {
+    @media (max-width: $small) {
       @content;
     }
   }

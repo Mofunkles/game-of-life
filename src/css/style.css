@@ -20,6 +20,7 @@ body {
   background-color: rgb(var(--dark-color));
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   display: grid;
   grid-template-columns: minmax(5vw, auto) [center-start] minmax(auto, 98.6rem) [center-end] minmax(5vw, auto);
   grid-template-rows: auto 1fr [bottom-start] auto [bottom-end];
@@ -30,16 +31,16 @@ body {
   }
 }
 
+::selection {
+  color: rgb(var(--light-color));
+  background-color: rgb(var(--primary-color));
+}
+
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   line-height: 1.45;
   color: rgb(var(--dark-color));
-}
-
-::selection {
-  color: rgb(var(--light-color));
-  background-color: rgb(var(--primary-color));
 }
 
 .button {
@@ -79,13 +80,21 @@ body {
 }
 
 .grid-container {
-  height: 100%;
-  width: 100%;
+  height: 120%;
+  width: 120%;
   position: absolute;
   z-index: -1;
-  opacity: 0.4;
-  background-image: linear-gradient(rgb(var(--secondary-color)) 2px, transparent 2px), linear-gradient(to right, rgb(var(--secondary-color)) 2px, transparent 2px);
-  background-size: 20px 20px;
+  overflow: hidden;
+  display: grid;
+  grid-gap: 0.4rem;
+}
+
+.cell {
+  border-radius: 10rem;
+}
+
+.alive {
+  background-color: rgb(var(--secondary-color));
 }
 
 .rules {
