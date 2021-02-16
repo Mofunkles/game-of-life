@@ -1,5 +1,7 @@
 class PanelView {
   parentElement = document.querySelector('.control-panel');
+  buttonStart = document.querySelector('.button-start');
+  buttonStop = document.querySelector('.button-stop');
 
   addHandlerButton(handlers) {
     this.parentElement.addEventListener('click', event => {
@@ -8,16 +10,16 @@ class PanelView {
 
       if (clicked.dataset.button === 'help') handlers.help();
 
-      if (
-        clicked.dataset.button === 'start' &&
-        clicked.classList.contains('button--active')
-      ) {
-        const stop = this.parentElement.querySelector('.button--inactive');
-        stop.classList.remove('button--inactive');
-        stop.classList.add('button--active');
-        clicked.classList.remove('button--active');
-        clicked.classList.add('button--inactive');
+      if (clicked.dataset.button === 'start' && !clicked.disabled) {
+        clicked.disabled = true;
+        this.buttonStop.disabled = false;
         handlers.start();
+      }
+
+      if (clicked.dataset.button === 'stop' && !clicked.disabled) {
+        clicked.disabled = true;
+        this.buttonStart.disabled = false;
+        handlers.stop();
       }
     });
   }

@@ -29,13 +29,17 @@ const controlShowHelp = function () {
   HelpView.toggleVisibility();
 };
 
-const controlSimulation = function () {
-  setInterval(() => {
+const controlStartSimulation = function () {
+  model.state.simulation = setInterval(() => {
     model.simulateGeneration();
     GridView.renderGrid(model.state.grid);
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
   }, 100);
+};
+
+const controlStopSimulation = function () {
+  clearInterval(model.state.simulation);
 };
 
 // Initialise
@@ -47,7 +51,8 @@ const controlSimulation = function () {
   // send multiple handlers as an object
   PanelView.addHandlerButton({
     help: controlShowHelp,
-    start: controlSimulation,
+    start: controlStartSimulation,
+    stop: controlStopSimulation,
   });
   HelpView.addHandlerShowHelp(controlShowHelp);
 })();

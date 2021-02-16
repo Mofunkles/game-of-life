@@ -1,5 +1,7 @@
 .header {
   grid-column: center-start / center-end;
+  display: flex;
+  justify-content: center;
 
   @include glassmorphism;
   width: 40rem;
@@ -40,7 +42,7 @@
       line-height: 0.5;
 
       @include responsive(large) {
-        width: 100%;
+        text-align: left;
       }
 
       @include responsive(medium) {

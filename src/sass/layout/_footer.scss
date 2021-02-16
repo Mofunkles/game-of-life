@@ -77,22 +77,28 @@
   font-weight: 700;
   text-align: center;
 
-  &--number {
-    display: block;
-    background-color: rgb(var(--primary-color));
-    color: rgb(var(--light-color));
-
-    @include responsive(large) {
-      display: initial;
-      margin-right: 1rem;
-    }
-  }
-
   @include responsive(medium) {
     font-size: 1.6rem;
   }
 
   @include responsive(small) {
     font-size: 1.4rem;
+  }
+
+  &--number {
+    display: block;
+    line-height: 0.5;
+    text-align: left;
+    width: 7rem;
+    background-color: rgb(var(--primary-color));
+    color: rgb(var(--light-color));
+
+    @include responsive(medium) {
+      line-height: 0.4;
+    }
+
+    @include responsive(medium) {
+      line-height: 0.35;
+    }
   }
 }

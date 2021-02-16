@@ -4,6 +4,7 @@ import { randomBinary } from './utility.js';
 export const state = {
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
+  simulation: null,
   grid: {
     cells: [],
     cellsBuffer: [],
