@@ -4,7 +4,7 @@ class PanelView {
   buttonStop = document.querySelector('.button-stop');
 
   addHandlerButton(handlers) {
-    this.parentElement.addEventListener('click', event => {
+    this.parentElement.addEventListener('mousedown', event => {
       const clicked = event.target.closest('.button');
       if (!clicked) return;
 

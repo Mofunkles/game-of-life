@@ -170,3 +170,7 @@ export const simulateGeneration = function () {
   state.grid.cells = [...state.grid.cellsBuffer];
   state.grid.generation++;
 };
+
+export const updateCell = function (index) {
+  state.grid.cells[index] = state.grid.cells[index] === 1 ? 0 : 1;
+};

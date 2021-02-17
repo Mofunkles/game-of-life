@@ -77,7 +77,11 @@ const controlInitialGosper = function () {
   }
 
   controlGenerateGrid('gosper');
-  console.log(model.state.grid);
+};
+
+const controlToggleCell = function (cell) {
+  model.updateCell(cell.dataset.index);
+  GridView.toggleCellLiving(cell);
 };
 
 // Initialise
@@ -96,5 +100,7 @@ const controlInitialGosper = function () {
     random: controlInitialRandom,
     gosper: controlInitialGosper,
   });
+
   HelpView.addHandlerShowHelp(controlShowHelp);
+  GridView.addHandlerToggleCell(controlToggleCell);
 })();
