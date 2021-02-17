@@ -77,6 +77,7 @@ const controlInitialGosper = function () {
   }
 
   controlGenerateGrid('gosper');
+  console.log(model.state.grid);
 };
 
 // Initialise

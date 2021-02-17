@@ -1,1 +1,1 @@
-export const GRID_SIZE = 80;
+export const GRID_SIZE = 100;

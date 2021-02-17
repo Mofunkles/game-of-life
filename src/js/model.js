@@ -36,11 +36,15 @@ const generateCells = function (pattern) {
   //2. generate corresponding pattern
   //3. map cell neighbours for each cell
 
+  // custom pattern
+  const prefab = pattern === 'gosper' ? gosper(state.grid.cellWidth) : null;
+
   for (let i = 0; i < state.grid.cellCount; i++) {
     if (pattern === 'clear') state.grid.cells.push(0);
     if (pattern === 'fill') state.grid.cells.push(1);
     if (pattern === 'random') state.grid.cells.push(randomBinary());
-    if (pattern === 'gosper') state.grid.cells.push(0);
+    if (prefab)
+      state.grid.cells.push(prefab.some(coord => coord === i) ? 1 : 0);
     if (state.grid.cells[i] === 1) state.grid.liveCells++;
     state.grid.cellNeighboursMap.push(cellNeighbours(i));
   }
