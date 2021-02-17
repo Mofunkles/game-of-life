@@ -87,12 +87,6 @@ body {
   z-index: 10;
   overflow: hidden;
   display: grid;
-  grid-gap: 0.4rem;
-}
-@media (max-width: 61.625em) {
-  .grid-container {
-    grid-gap: 0.2rem;
-  }
 }
 
 .cell {

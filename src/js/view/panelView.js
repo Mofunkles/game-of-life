@@ -1,7 +1,9 @@
 class PanelView {
   parentElement = document.querySelector('.control-panel');
-  buttonStart = document.querySelector('.button-start');
-  buttonStop = document.querySelector('.button-stop');
+  buttonStart = this.parentElement.querySelector('.button-start');
+  buttonStop = this.parentElement.querySelector('.button-stop');
+  generations = this.parentElement.querySelector('.generations-number');
+  liveCells = this.parentElement.querySelector('.livecells-number');
 
   addHandlerButton(handlers) {
     this.parentElement.addEventListener('mousedown', event => {
@@ -32,13 +34,11 @@ class PanelView {
   }
 
   updateGenerations(number) {
-    const generations = this.parentElement.querySelector('.generations-number');
-    generations.textContent = number;
+    this.generations.textContent = number;
   }
 
   updateLiveCells(number) {
-    const liveCells = this.parentElement.querySelector('.livecells-number');
-    liveCells.textContent = number;
+    this.liveCells.textContent = number;
   }
 }
 
