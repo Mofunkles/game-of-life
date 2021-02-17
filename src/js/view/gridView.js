@@ -27,7 +27,17 @@ class GridView {
     this.parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  updateGrid(grid) {}
+  updateGrid(grid) {
+    const renderedCells = [...this.parentElement.querySelectorAll('.cell')];
+
+    const differences = grid.cells
+      .map((cell, index) => (cell !== grid.cellsBuffer[index] ? index : null))
+      .filter(cell => cell !== null);
+
+    differences.forEach(index => {
+      this.toggleCellLiving(renderedCells[index]);
+    });
+  }
 
   _generateMarkup(cell, index) {
     return `<div class="cell ${

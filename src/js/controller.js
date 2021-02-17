@@ -1,3 +1,4 @@
+import { TICK_RATE } from './config.js';
 import * as model from './model.js';
 import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
@@ -32,10 +33,11 @@ const controlShowHelp = function () {
 const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
-    GridView.renderGrid(model.state.grid);
+    GridView.updateGrid(model.state.grid);
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
-  }, 100);
+    model.swapBuffer();
+  }, TICK_RATE);
 };
 
 const controlStopSimulation = function () {

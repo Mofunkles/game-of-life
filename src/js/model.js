@@ -63,9 +63,11 @@ export const generateGrid = function (pattern) {
   // shorter grid axis is the shorter screen axis devided by cell size
   state.grid.cellSize = Math.ceil(state[`screen${long}`] / GRID_SIZE);
   state.grid[`cell${long}`] = GRID_SIZE;
+
   state.grid[`cell${short}`] = Math.ceil(
     state[`screen${short}`] / state.grid.cellSize
   );
+
   state.grid.cellCount = state.grid.cellWidth * state.grid.cellHeight;
 
   generateCells(pattern);
@@ -156,6 +158,10 @@ const deadOrAlive = function (cell, neighbours) {
   return false;
 };
 
+export const swapBuffer = function () {
+  state.grid.cells = [...state.grid.cellsBuffer];
+};
+
 export const simulateGeneration = function () {
   // 1. generate cell buffer
   // 2. apply rules to buffer
@@ -167,7 +173,6 @@ export const simulateGeneration = function () {
       ? 1
       : 0;
   });
-  state.grid.cells = [...state.grid.cellsBuffer];
   state.grid.generation++;
 };
 
