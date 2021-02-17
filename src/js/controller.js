@@ -8,7 +8,6 @@ import PanelView from './view/panelView.js';
 /// TODO LIST
 /////////////////////////////////
 //
-//  - Add loading animation for grid generation
 //  - Remake statistics panel to be opaque
 //  - Cell painting when holding down mouse
 //
@@ -30,11 +29,15 @@ const controlGenerateGrid = function (pattern = 'random') {
   // 2. render grid from grid object
   // 3. update panel statistics
 
+  GridView.renderLoader();
   model.generateGrid(pattern);
-  GridView.renderGrid(model.state.grid);
-  PanelView.updateGenerations(model.state.grid.generation);
-  PanelView.updateLiveCells(model.state.grid.liveCells);
-  HelpView.updateDetails(model.state.grid);
+
+  setTimeout(() => {
+    GridView.renderGrid(model.state.grid);
+    PanelView.updateGenerations(model.state.grid.generation);
+    PanelView.updateLiveCells(model.state.grid.liveCells);
+    HelpView.updateDetails(model.state.grid);
+  }, 1000);
 };
 
 const controlShowHelp = function () {

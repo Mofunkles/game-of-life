@@ -14,16 +14,33 @@ class GridView {
     cell.classList.toggle('alive');
   }
 
+  renderLoader() {
+    this.parentElement.innerHTML = '';
+    this.parentElement.style.gridTemplateColumns = `1fr`;
+    this.parentElement.style.gridTemplateRows = `1fr`;
+    this.parentElement.style.placeItems = 'center';
+
+    const markup = `
+      <div class="loader">
+        <div class="loader__cell loader__cell--1"></div>
+        <div class="loader__cell loader__cell--2"></div>
+        <div class="loader__cell loader__cell--3"></div>
+      </div>`;
+
+    this.parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
   renderGrid(grid) {
+    this.parentElement.innerHTML = '';
     this.parentElement.style.gridTemplateColumns = `repeat(${grid.cellWidth}, ${grid.cellSize}px)`;
     this.parentElement.style.gridTemplateRows = `repeat(${grid.cellHeight}, ${grid.cellSize}px)`;
+    this.parentElement.style.placeItems = 'initial';
 
     const markup = grid.cells.reduce(
       (html, cell, index) => (html += this._generateMarkup(cell, index)),
       ''
     );
 
-    this.parentElement.innerHTML = '';
     this.parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
