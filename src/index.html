@@ -19,23 +19,54 @@
       </h1>
     </header>
 
-    <section class="rules hidden">
-      <h2 class="rules__title">Conway's Game of Life</h2>
-      <a class="rules__link" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">WIKIPEDIA</a>
-      <h3 class="rules__header">Rules</h3>
-      <ol class="rules__list">
-        <li>Any live cell with fewer than two live neighbours dies.</li>
-        <li>Any live cell with two or three live neighbours lives.</li>
-        <li>Any live cell with more than three live neighbours dies.</li>
-        <li>Any dead cell with exactly three live neighbours becomes a live cell.</li>
-      </ol>
+    <section class="help hidden">
+      <div class="help__grid-details">
+        <ul class="grid-details__list">
+          <li class="grid-details__list-item">
+            <p class="grid-details__detail">
+              <span class="grid-details__detail--number gridwidth-number">-</span>Grid Width
+            </p>
+          </li>
+          <li class="grid-details__list-item">
+            <p class="grid-details__detail">
+              <span class="grid-details__detail--number gridheight-number">-</span>Grid Height
+            </p>
+          </li>
+          <li class="grid-details__list-item">
+            <p class="grid-details__detail">
+              <span class="grid-details__detail--number cellcount-number">-</span>Cell Count
+            </p>
+          </li>
+          <li class="grid-details__list-item">
+            <p class="grid-details__detail">
+              <span class="grid-details__detail--number cellsize-number">-</span>Cell Size
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="help__rules">
+        <h2 class="rules__title">Conway's Game of Life</h2>
+        <div class="rules__links">
+          <a class="rules__link" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank"
+            >📑 WIKI</a
+          >
+          <a class="rules__link" href="https://github.com/Mofunkles/game-of-life" target="_blank">🔧 GITHUB</a>
+        </div>
+        <h3 class="rules__header">Rules</h3>
+        <ul class="rules__list">
+          <li>Any live cell with fewer than two live neighbours dies.</li>
+          <li>Any live cell with two or three live neighbours lives.</li>
+          <li>Any live cell with more than three live neighbours dies.</li>
+          <li>Any dead cell with exactly three live neighbours becomes a live cell.</li>
+        </ul>
+      </div>
     </section>
 
     <footer class="control-panel">
       <div class="control-panel__statistics">
         <div class="control-panel__text">
           <p class="statistic"><span class="statistic--number generations-number">-</span>Generations</p>
-          <p class="statistic"><span class="statistic--number livecells-number">-</span>Live cells</p>
+          <p class="statistic"><span class="statistic--number livecells-number">-</span>Live Cells</p>
         </div>
         <button class="button button--small" data-button="help">?</button>
       </div>

@@ -4,6 +4,15 @@ import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
 
+/////////////////////////////////
+/// TODO LIST
+/////////////////////////////////
+//
+//  - Remake statistics panel to be opaque
+//  - Cell painting when holding down mouse
+//
+/////////////////////////////////
+
 const controlWindowResolution = function (event) {
   // 1. destructure window resize event
   // 2. update state for new window width and height
@@ -20,10 +29,15 @@ const controlGenerateGrid = function (pattern = 'random') {
   // 2. render grid from grid object
   // 3. update panel statistics
 
+  GridView.renderLoader();
   model.generateGrid(pattern);
-  GridView.renderGrid(model.state.grid);
-  PanelView.updateGenerations(model.state.grid.generation);
-  PanelView.updateLiveCells(model.state.grid.liveCells);
+
+  setTimeout(() => {
+    GridView.renderGrid(model.state.grid);
+    PanelView.updateGenerations(model.state.grid.generation);
+    PanelView.updateLiveCells(model.state.grid.liveCells);
+    HelpView.updateDetails(model.state.grid);
+  }, 1000);
 };
 
 const controlShowHelp = function () {

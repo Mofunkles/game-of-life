@@ -3,7 +3,7 @@
   grid-row: bottom-start / bottom-end;
   z-index: 20;
 
-  @include glassmorphism;
+  @include glassmorphism(0.3);
   border-top-left-radius: 4rem;
   border-top-right-radius: 4rem;
   padding: 2rem 4rem 4rem 4rem;

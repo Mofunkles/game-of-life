@@ -1,8 +1,11 @@
-@mixin glassmorphism {
-  background-color: rgba(var(--light-color), 0.45);
-  border: 1px solid rgba(var(--light-color), 0.15);
+@mixin glassmorphism($intensity) {
+  background-image: linear-gradient(
+    rgba(var(--light-color), $intensity),
+    rgba(var(--light-color), calc(#{$intensity} + 0.3))
+  );
+  border: 1px solid rgba(var(--light-color), $intensity);
   box-shadow: 0 0.5rem 3.5rem 1.75rem rgba(black, 0.45);
-  backdrop-filter: blur(0.45rem);
+  backdrop-filter: blur(#{$intensity}rem);
 }
 
 @mixin responsive($breakpoint) {

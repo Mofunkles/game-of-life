@@ -1,5 +1,5 @@
-import { GRID_SIZE } from './config.js';
-import { randomBinary } from './utility.js';
+import { GRID_SIZE, RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS } from './config.js';
+import { randomNumber, randomBinary } from './utility.js';
 import { gosper } from './patterns.js';
 
 export const state = {
@@ -32,17 +32,13 @@ const resetGrid = function () {
 };
 
 const generateCells = function (pattern) {
-  //1. loop over cell count
-  //2. generate corresponding pattern
-  //3. map cell neighbours for each cell
-
-  // custom pattern
+  const seed = randomNumber(RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS);
   const prefab = pattern === 'gosper' ? gosper(state.grid.cellWidth) : null;
 
   for (let i = 0; i < state.grid.cellCount; i++) {
     if (pattern === 'clear') state.grid.cells.push(0);
     if (pattern === 'fill') state.grid.cells.push(1);
-    if (pattern === 'random') state.grid.cells.push(randomBinary());
+    if (pattern === 'random') state.grid.cells.push(randomBinary(seed));
     if (prefab)
       state.grid.cells.push(prefab.some(coord => coord === i) ? 1 : 0);
     if (state.grid.cells[i] === 1) state.grid.liveCells++;
@@ -147,7 +143,6 @@ const neighboursCount = function (index) {
 };
 
 const deadOrAlive = function (cell, neighbours) {
-  // apply the game rules
   if (cell === 1 && neighbours >= 2 && neighbours <= 3) return true;
   if (cell === 0 && neighbours === 3) {
     state.grid.liveCells++;
@@ -163,11 +158,6 @@ export const swapBuffer = function () {
 };
 
 export const simulateGeneration = function () {
-  // 1. generate cell buffer
-  // 2. apply rules to buffer
-  // 3. swap buffer
-
-  state.grid.cellsBuffer = [...state.grid.cells];
   state.grid.cells.forEach((cell, index) => {
     state.grid.cellsBuffer[index] = deadOrAlive(cell, neighboursCount(index))
       ? 1

@@ -4,7 +4,7 @@
   justify-content: center;
   z-index: 20;
 
-  @include glassmorphism;
+  @include glassmorphism(0.3);
   width: 40rem;
   margin-top: 2rem;
   padding: 2rem;
@@ -41,6 +41,7 @@
       color: rgb(var(--light-color));
       font-size: 2rem;
       line-height: 0.5;
+      padding-left: 2px;
 
       @include responsive(large) {
         text-align: left;

@@ -34,11 +34,11 @@ class PanelView {
   }
 
   updateGenerations(number) {
-    this.generations.textContent = number;
+    this.generations.textContent = number.toLocaleString();
   }
 
   updateLiveCells(number) {
-    this.liveCells.textContent = number;
+    this.liveCells.textContent = number.toLocaleString();
   }
 }
 
