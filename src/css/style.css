@@ -142,7 +142,7 @@ body {
 }
 
 .grid-details__list {
-  height: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -191,21 +191,15 @@ body {
 }
 .rules__link:link, .rules__link:visited {
   font-size: 1.4rem;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 0.5;
-  padding: 0 1rem 0 2px;
-  background-color: rgb(var(--primary-color));
-  color: rgb(var(--light-color));
+  color: rgb(var(--secondary-color));
   text-decoration: none;
 }
 .rules__header {
   width: 34%;
   font-size: 1.6rem;
   font-weight: 700;
-  line-height: 0.5;
-  background-color: rgb(var(--primary-color));
-  color: rgb(var(--light-color));
-  padding-left: 2px;
 }
 .rules__list {
   font-size: 1.4rem;

@@ -8,8 +8,8 @@ import PanelView from './view/panelView.js';
 /// TODO LIST
 /////////////////////////////////
 //
-//  - Add grid stats to help panel
-//  - Rework Random to include a randomised bias
+//  - Add loading animation for grid generation
+//  - Remake statistics panel to be opaque
 //  - Cell painting when holding down mouse
 //
 /////////////////////////////////

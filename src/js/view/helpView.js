@@ -19,10 +19,10 @@ class HelpView {
   }
 
   updateDetails(grid) {
-    this.gridWidth.textContent = grid.cellWidth;
-    this.gridHeight.textContent = grid.cellHeight;
-    this.cellCount.textContent = grid.cellCount;
-    this.cellSize.textContent = grid.cellSize;
+    this.gridWidth.textContent = grid.cellWidth.toLocaleString();
+    this.gridHeight.textContent = grid.cellHeight.toLocaleString();
+    this.cellCount.textContent = grid.cellCount.toLocaleString();
+    this.cellSize.textContent = grid.cellSize.toLocaleString();
   }
 }
 
