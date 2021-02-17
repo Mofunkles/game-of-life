@@ -36,11 +36,15 @@ const generateCells = function (pattern) {
   //2. generate corresponding pattern
   //3. map cell neighbours for each cell
 
+  // custom pattern
+  const prefab = pattern === 'gosper' ? gosper(state.grid.cellWidth) : null;
+
   for (let i = 0; i < state.grid.cellCount; i++) {
     if (pattern === 'clear') state.grid.cells.push(0);
     if (pattern === 'fill') state.grid.cells.push(1);
     if (pattern === 'random') state.grid.cells.push(randomBinary());
-    if (pattern === 'gosper') state.grid.cells.push(0);
+    if (prefab)
+      state.grid.cells.push(prefab.some(coord => coord === i) ? 1 : 0);
     if (state.grid.cells[i] === 1) state.grid.liveCells++;
     state.grid.cellNeighboursMap.push(cellNeighbours(i));
   }
@@ -59,9 +63,11 @@ export const generateGrid = function (pattern) {
   // shorter grid axis is the shorter screen axis devided by cell size
   state.grid.cellSize = Math.ceil(state[`screen${long}`] / GRID_SIZE);
   state.grid[`cell${long}`] = GRID_SIZE;
+
   state.grid[`cell${short}`] = Math.ceil(
     state[`screen${short}`] / state.grid.cellSize
   );
+
   state.grid.cellCount = state.grid.cellWidth * state.grid.cellHeight;
 
   generateCells(pattern);
@@ -152,6 +158,10 @@ const deadOrAlive = function (cell, neighbours) {
   return false;
 };
 
+export const swapBuffer = function () {
+  state.grid.cells = [...state.grid.cellsBuffer];
+};
+
 export const simulateGeneration = function () {
   // 1. generate cell buffer
   // 2. apply rules to buffer
@@ -163,6 +173,9 @@ export const simulateGeneration = function () {
       ? 1
       : 0;
   });
-  state.grid.cells = [...state.grid.cellsBuffer];
   state.grid.generation++;
+};
+
+export const updateCell = function (index) {
+  state.grid.cells[index] = state.grid.cells[index] === 1 ? 0 : 1;
 };

@@ -1,6 +1,7 @@
 .control-panel {
   grid-column: center-start / center-end;
   grid-row: bottom-start / bottom-end;
+  z-index: 20;
 
   @include glassmorphism;
   border-top-left-radius: 4rem;

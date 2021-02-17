@@ -1,12 +1,17 @@
-export const gosper = function (width, height, index) {
-  const start = width * (height / 2) + width / 2;
+export const gosper = function (width) {
+  // calculate starting position from grid width
+  const baseWidth = 36;
+  const start = Math.floor(width * 20 + Math.floor((width - baseWidth) / 3));
   // prettier-ignore
-  const basePattern = [24, 58, 60, 84, 85, 92, 93, 106, 107, 119, 123, 128, 129, 142, 143, 144, 145, 154, 160, 164, 165, 180, 181, 190, 194, 196, 197, 202, 204, 226, 232, 240, 264, 268, 300, 301];
-  const adjustedPattern = basePattern.map(coord => coord);
+  const basePattern = [24, 58, 60, 84, 85, 92, 93, 106, 107, 119, 123, 128, 129, 142, 143, 144, 145, 154, 160, 164, 165, 180, 181, 190, 194, 196, 197, 202, 204, 226, 232, 240, 263, 267, 300, 301];
 
-  return adjustedPattern.some(coord => coord === index) ? 1 : 0;
+  return basePattern.map(coord => {
+    // divide by base width to determine row number
+    const row = Math.floor(coord / baseWidth);
+    // multiply row number by grid width
+    // flatten old coordinates to determine inset number
+    // add both together to get new coordinate
+    const offset = row * width + (coord - row * baseWidth);
+    return start + offset;
+  });
 };
-
-// 0.. 24 > X
-// 0.. 22 > X > 24 > X
-// 0.. 12 > X X > 15.. 20 > X X

@@ -2,7 +2,7 @@ class HelpView {
   parentElement = document.querySelector('.rules');
 
   addHandlerShowHelp(handler) {
-    this.parentElement.addEventListener('click', event => {
+    this.parentElement.addEventListener('mousedown', event => {
       const clicked = event.target.closest('.rules');
       if (!clicked) return;
 
