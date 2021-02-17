@@ -4,6 +4,16 @@ import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
 
+/////////////////////////////////
+/// TODO LIST
+/////////////////////////////////
+//
+//  - Add grid stats to help panel
+//  - Rework Random to include a randomised bias
+//  - Cell painting when holding down mouse
+//
+/////////////////////////////////
+
 const controlWindowResolution = function (event) {
   // 1. destructure window resize event
   // 2. update state for new window width and height
@@ -24,6 +34,7 @@ const controlGenerateGrid = function (pattern = 'random') {
   GridView.renderGrid(model.state.grid);
   PanelView.updateGenerations(model.state.grid.generation);
   PanelView.updateLiveCells(model.state.grid.liveCells);
+  HelpView.updateDetails(model.state.grid);
 };
 
 const controlShowHelp = function () {
