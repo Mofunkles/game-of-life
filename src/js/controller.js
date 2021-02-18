@@ -4,12 +4,15 @@ import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
 
+import * as canvas from './canvasTest.js';
+
 /////////////////////////////////
 /// TODO LIST
 /////////////////////////////////
 //
 //  - responsive pass
 //  - Remake statistics panel to be opaque
+//  - reduce shadow intensity
 //  - Try Canvas
 //  - Cell painting when holding down mouse
 //
@@ -31,11 +34,18 @@ const controlGenerateGrid = function (pattern = 'random') {
   // 2. render grid from grid object
   // 3. update panel statistics
 
-  GridView.renderLoader();
+  //GridView.renderLoader();
   model.generateGrid(pattern);
 
   setTimeout(() => {
-    GridView.renderGrid(model.state.grid);
+    //GridView.renderGrid(model.state.grid);
+    model.state.canvas.context = canvas.context(model.state);
+    model.state.canvas.paths = canvas.paths(model.state.grid);
+    canvas.updateCanvas(
+      model.state.canvas.context,
+      model.state.grid,
+      model.state.canvas.paths
+    );
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
     HelpView.updateDetails(model.state.grid);
@@ -49,7 +59,12 @@ const controlShowHelp = function () {
 const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
-    GridView.updateGrid(model.state.grid);
+    //GridView.updateGrid(model.state.grid);
+    canvas.updateCanvas(
+      model.state.canvas.context,
+      model.state.grid,
+      model.state.canvas.paths
+    );
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
     model.swapBuffer();
@@ -121,4 +136,6 @@ const controlToggleCell = function (cell) {
 
   HelpView.addHandlerShowHelp(controlShowHelp);
   GridView.addHandlerToggleCell(controlToggleCell);
+
+  //canvas.draw(model.state);
 })();

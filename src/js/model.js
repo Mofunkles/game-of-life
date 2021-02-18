@@ -6,6 +6,10 @@ export const state = {
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
   simulation: null,
+  canvas: {
+    context: null,
+    paths: [],
+  },
   grid: {
     cells: [],
     cellsBuffer: [],

@@ -112,6 +112,13 @@ body {
   background-color: rgb(var(--secondary-color));
 }
 
+.canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+}
+
 .help {
   width: 40rem;
   height: 40rem;
