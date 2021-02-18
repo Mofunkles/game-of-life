@@ -1,4 +1,4 @@
-import { TICK_RATE } from './config.js';
+import { TICK_RATE, LOADER_TIME } from './config.js';
 import * as model from './model.js';
 import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
@@ -8,7 +8,9 @@ import PanelView from './view/panelView.js';
 /// TODO LIST
 /////////////////////////////////
 //
+//  - responsive pass
 //  - Remake statistics panel to be opaque
+//  - Try Canvas
 //  - Cell painting when holding down mouse
 //
 /////////////////////////////////
@@ -37,7 +39,7 @@ const controlGenerateGrid = function (pattern = 'random') {
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
     HelpView.updateDetails(model.state.grid);
-  }, 1000);
+  }, LOADER_TIME);
 };
 
 const controlShowHelp = function () {
