@@ -1,10 +1,8 @@
-import { TICK_RATE, LOADER_TIME } from './config.js';
+import { TICK_RATE } from './config.js';
 import * as model from './model.js';
 import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
-
-import * as canvas from './canvasTest.js';
 
 /////////////////////////////////
 /// TODO LIST
@@ -34,22 +32,16 @@ const controlGenerateGrid = function (pattern = 'random') {
   // 2. render grid from grid object
   // 3. update panel statistics
 
-  //GridView.renderLoader();
   model.generateGrid(pattern);
-
-  setTimeout(() => {
-    //GridView.renderGrid(model.state.grid);
-    model.state.canvas.context = canvas.context(model.state);
-    model.state.canvas.paths = canvas.paths(model.state.grid);
-    canvas.updateCanvas(
-      model.state.canvas.context,
-      model.state.grid,
-      model.state.canvas.paths
-    );
-    PanelView.updateGenerations(model.state.grid.generation);
-    PanelView.updateLiveCells(model.state.grid.liveCells);
-    HelpView.updateDetails(model.state.grid);
-  }, LOADER_TIME);
+  model.state.canvas.context = GridView.context(model.state);
+  GridView.renderCanvas(
+    model.state.canvas.context,
+    model.state.grid,
+    model.state.canvas.paths
+  );
+  PanelView.updateGenerations(model.state.grid.generation);
+  PanelView.updateLiveCells(model.state.grid.liveCells);
+  HelpView.updateDetails(model.state.grid);
 };
 
 const controlShowHelp = function () {
@@ -60,7 +52,7 @@ const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
     //GridView.updateGrid(model.state.grid);
-    canvas.updateCanvas(
+    GridView.renderCanvas(
       model.state.canvas.context,
       model.state.grid,
       model.state.canvas.paths
@@ -112,11 +104,6 @@ const controlInitialGosper = function () {
   controlGenerateGrid('gosper');
 };
 
-const controlToggleCell = function (cell) {
-  model.updateCell(cell.dataset.index);
-  GridView.toggleCellLiving(cell);
-};
-
 // Initialise
 (function () {
   controlGenerateGrid();
@@ -135,7 +122,4 @@ const controlToggleCell = function (cell) {
   });
 
   HelpView.addHandlerShowHelp(controlShowHelp);
-  GridView.addHandlerToggleCell(controlToggleCell);
-
-  //canvas.draw(model.state);
 })();

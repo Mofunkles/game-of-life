@@ -31,7 +31,6 @@ export const paths = function (grid) {
 };
 
 export const updateCanvas = function (context, grid, paths) {
-  const size = grid.cellSize;
   const width = grid.cellWidth;
   const height = grid.cellHeight;
 
@@ -41,7 +40,6 @@ export const updateCanvas = function (context, grid, paths) {
       let deadOrAlive =
         grid.cells[j * width + i] === 1 ? `254, 96, 57` : '45, 50, 53';
 
-      //context.clearRect(i * size, j * size, size, size);
       context.fillStyle = `rgb(${deadOrAlive})`;
       context.fill(paths[j * width + i]);
     }
