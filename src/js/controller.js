@@ -8,10 +8,7 @@ import PanelView from './view/panelView.js';
 /// TODO LIST
 /////////////////////////////////
 //
-//  - responsive pass
 //  - Remake statistics panel to be opaque
-//  - reduce shadow intensity
-//  - Try Canvas
 //  - Cell painting when holding down mouse
 //
 /////////////////////////////////
@@ -51,7 +48,6 @@ const controlShowHelp = function () {
 const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
-    //GridView.updateGrid(model.state.grid);
     GridView.renderCanvas(
       model.state.canvas.context,
       model.state.grid,
