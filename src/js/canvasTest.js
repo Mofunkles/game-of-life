@@ -5,10 +5,9 @@ const canvas = document.querySelector('.canvas');
 export const context = function (state) {
   if (!canvas.getContext) return;
 
-  const dpi = window.devicePixelRatio;
   const context = canvas.getContext('2d');
-  canvas.setAttribute('width', state.screenWidth * dpi);
-  canvas.setAttribute('height', state.screenHeight * dpi);
+  canvas.setAttribute('width', state.screenWidth);
+  canvas.setAttribute('height', state.screenHeight);
 
   return context;
 };
