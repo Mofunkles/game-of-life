@@ -23,7 +23,6 @@
     border-top-left-radius: 4rem;
     border-bottom-left-radius: 4rem;
     padding: 2rem;
-    z-index: 31;
 
     @include responsive(small) {
       padding: 1.5rem;
@@ -36,6 +35,7 @@
     border-top-right-radius: 4rem;
     border-bottom-right-radius: 4rem;
     padding: 2rem;
+    z-index: -1;
 
     @include responsive(small) {
       padding: 1.5rem;

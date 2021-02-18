@@ -4,14 +4,6 @@ import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
 
-/////////////////////////////////
-/// TODO LIST
-/////////////////////////////////
-//
-//  - Cell painting when holding down mouse
-//
-/////////////////////////////////
-
 const controlWindowResolution = function (event) {
   const [observer] = event;
   const { width, height } = observer.contentRect;

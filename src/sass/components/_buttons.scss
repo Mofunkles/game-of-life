@@ -11,7 +11,7 @@
   transition: transform 0.3s;
   backface-visibility: hidden;
 
-  @include responsive(small) {
+  @include responsive(large) {
     height: 4rem;
     width: 10rem;
   }
