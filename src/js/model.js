@@ -6,6 +6,10 @@ export const state = {
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
   simulation: null,
+  canvas: {
+    context: null,
+    paths: [],
+  },
   grid: {
     cells: [],
     cellsBuffer: [],
@@ -46,6 +50,21 @@ const generateCells = function (pattern) {
   }
 };
 
+const generatePaths = function () {
+  const { cellSize: size, cellWidth: width, cellHeight: height } = state.grid;
+  const paths = [];
+
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {
+      const cell = new Path2D();
+      cell.arc(i * size, j * size, size / 2, Math.PI * 2, false);
+      paths[j * width + i] = cell;
+    }
+  }
+
+  state.canvas.paths = paths;
+};
+
 export const generateGrid = function (pattern) {
   resetGrid();
 
@@ -67,6 +86,7 @@ export const generateGrid = function (pattern) {
   state.grid.cellCount = state.grid.cellWidth * state.grid.cellHeight;
 
   generateCells(pattern);
+  generatePaths();
 };
 
 const checkRange = function (index) {

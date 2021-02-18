@@ -29,15 +29,16 @@ const controlGenerateGrid = function (pattern = 'random') {
   // 2. render grid from grid object
   // 3. update panel statistics
 
-  GridView.renderLoader();
   model.generateGrid(pattern);
-
-  setTimeout(() => {
-    GridView.renderGrid(model.state.grid);
-    PanelView.updateGenerations(model.state.grid.generation);
-    PanelView.updateLiveCells(model.state.grid.liveCells);
-    HelpView.updateDetails(model.state.grid);
-  }, 1000);
+  model.state.canvas.context = GridView.context(model.state);
+  GridView.renderCanvas(
+    model.state.canvas.context,
+    model.state.grid,
+    model.state.canvas.paths
+  );
+  PanelView.updateGenerations(model.state.grid.generation);
+  PanelView.updateLiveCells(model.state.grid.liveCells);
+  HelpView.updateDetails(model.state.grid);
 };
 
 const controlShowHelp = function () {
@@ -47,7 +48,11 @@ const controlShowHelp = function () {
 const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
-    GridView.updateGrid(model.state.grid);
+    GridView.renderCanvas(
+      model.state.canvas.context,
+      model.state.grid,
+      model.state.canvas.paths
+    );
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
     model.swapBuffer();
@@ -95,11 +100,6 @@ const controlInitialGosper = function () {
   controlGenerateGrid('gosper');
 };
 
-const controlToggleCell = function (cell) {
-  model.updateCell(cell.dataset.index);
-  GridView.toggleCellLiving(cell);
-};
-
 // Initialise
 (function () {
   controlGenerateGrid();
@@ -118,5 +118,4 @@ const controlToggleCell = function (cell) {
   });
 
   HelpView.addHandlerShowHelp(controlShowHelp);
-  GridView.addHandlerToggleCell(controlToggleCell);
 })();
