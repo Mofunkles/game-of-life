@@ -4,29 +4,19 @@ import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
 
-/////////////////////////////////
-/// TODO LIST
-/////////////////////////////////
-//
-//  - Cell painting when holding down mouse
-//
-/////////////////////////////////
-
 const controlWindowResolution = function (event) {
   const [observer] = event;
   const { width, height } = observer.contentRect;
   model.state.screenWidth = width;
   model.state.screenHeight = height;
+
+  controlGenerateGrid();
 };
 
 const controlGenerateGrid = function (pattern = 'random') {
   model.generateGrid(pattern);
   model.state.canvas.context = GridView.context(model.state);
-  GridView.renderCanvas(
-    model.state.canvas.context,
-    model.state.grid,
-    model.state.canvas.paths
-  );
+  GridView.renderCanvas(model.state.canvas, model.state.grid);
   PanelView.updateGenerations(model.state.grid.generation);
   PanelView.updateLiveCells(model.state.grid.liveCells);
   HelpView.updateDetails(model.state.grid);
@@ -39,11 +29,7 @@ const controlShowHelp = function () {
 const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
-    GridView.renderCanvas(
-      model.state.canvas.context,
-      model.state.grid,
-      model.state.canvas.paths
-    );
+    GridView.renderCanvas(model.state.canvas, model.state.grid);
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
     model.swapBuffer();
@@ -92,7 +78,6 @@ const controlInitialGosper = function () {
 };
 
 (function () {
-  controlGenerateGrid();
   const resize = new ResizeObserver(controlWindowResolution);
   resize.observe(GridView.parentElement);
 
