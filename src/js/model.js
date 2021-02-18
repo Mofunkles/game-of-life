@@ -24,6 +24,8 @@ export const state = {
 };
 
 const resetGrid = function () {
+  state.canvas.context = null;
+  state.canvas.paths = [];
   state.grid.cells = [];
   state.grid.cellsBuffer = [];
   state.grid.cellNeighboursMap = [];
