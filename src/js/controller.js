@@ -8,16 +8,11 @@ import PanelView from './view/panelView.js';
 /// TODO LIST
 /////////////////////////////////
 //
-//  - Remake statistics panel to be opaque
 //  - Cell painting when holding down mouse
 //
 /////////////////////////////////
 
 const controlWindowResolution = function (event) {
-  // 1. destructure window resize event
-  // 2. update state for new window width and height
-  // 3. generate grid
-
   const [observer] = event;
   const { width, height } = observer.contentRect;
   model.state.screenWidth = width;
@@ -25,10 +20,6 @@ const controlWindowResolution = function (event) {
 };
 
 const controlGenerateGrid = function (pattern = 'random') {
-  // 1. generate grid object
-  // 2. render grid from grid object
-  // 3. update panel statistics
-
   model.generateGrid(pattern);
   model.state.canvas.context = GridView.context(model.state);
   GridView.renderCanvas(
@@ -100,13 +91,11 @@ const controlInitialGosper = function () {
   controlGenerateGrid('gosper');
 };
 
-// Initialise
 (function () {
   controlGenerateGrid();
   const resize = new ResizeObserver(controlWindowResolution);
   resize.observe(GridView.parentElement);
 
-  // send multiple handlers as an object
   PanelView.addHandlerButton({
     help: controlShowHelp,
     start: controlStartSimulation,
