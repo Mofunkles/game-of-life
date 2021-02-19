@@ -1,6 +1,6 @@
 import { GRID_SIZE, RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS } from './config.js';
 import { randomNumber, randomBinary } from './utility.js';
-import { gosper } from './patterns.js';
+import { generatePattern } from './patterns.js';
 
 export const state = {
   screenWidth: window.innerWidth,
@@ -8,7 +8,7 @@ export const state = {
   simulation: null,
   canvas: {
     context: null,
-    paths: [],
+    path: null,
   },
   grid: {
     cells: [],
@@ -24,8 +24,6 @@ export const state = {
 };
 
 const resetGrid = function () {
-  state.canvas.context = null;
-  state.canvas.paths = [];
   state.grid.cells = [];
   state.grid.cellsBuffer = [];
   state.grid.cellNeighboursMap = [];
@@ -37,51 +35,61 @@ const resetGrid = function () {
   state.grid.liveCells = 0;
 };
 
-const generateCells = function (pattern) {
+const generateCells = function (initial) {
   const seed = randomNumber(RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS);
-  const prefab = pattern === 'gosper' ? gosper(state.grid.cellWidth) : null;
+  const pattern =
+    initial !== 'random' ? generatePattern(initial, state.grid) : null;
 
   for (let i = 0; i < state.grid.cellCount; i++) {
-    if (pattern === 'clear') state.grid.cells.push(0);
-    if (pattern === 'fill') state.grid.cells.push(1);
-    if (pattern === 'random') state.grid.cells.push(randomBinary(seed));
-    if (prefab)
-      state.grid.cells.push(prefab.some(coord => coord === i) ? 1 : 0);
+    if (initial === 'random') state.grid.cells.push(randomBinary(seed));
+    else state.grid.cells.push(pattern.some(coord => coord === i) ? 1 : 0);
+
     if (state.grid.cells[i] === 1) state.grid.liveCells++;
     state.grid.cellNeighboursMap.push(cellNeighbours(i));
   }
+
+  state.grid.cellsBuffer = [...state.grid.cells];
 };
 
-const generatePaths = function () {
+export const generatePaths = function () {
   const { cellSize: size, cellWidth: width, cellHeight: height } = state.grid;
-  const paths = [];
+  const path = new Path2D();
+  const shape = size > 3 ? 'arc' : 'rect';
 
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
-      const cell = new Path2D();
-      cell.arc(i * size, j * size, size / 2, Math.PI * 2, false);
-      paths[j * width + i] = cell;
+      if (
+        state.grid.cells[j * width + i] === 0 &&
+        state.grid.cellsBuffer[j * width + i] === 0
+      )
+        continue;
+
+      path.moveTo(i * size, j * size);
+      shape === 'arc'
+        ? path.arc(i * size, j * size, size / 2, Math.PI * 2, false)
+        : path.rect(i * size, j * size, size, size);
     }
   }
 
-  state.canvas.paths = paths;
+  state.canvas.path = path;
 };
 
 export const generateGrid = function (pattern) {
   resetGrid();
-
-  // determine long / short axis
   const long = state.screenWidth < state.screenHeight ? 'Height' : 'Width';
   const short = long === 'Height' ? 'Width' : 'Height';
 
-  // cell size is to be a square at any screen resolution or orientation
-  // cell size is the longer screen axis divided by desired grid size
-  // longer grid axis is assigned grid size from config
-  // shorter grid axis is the shorter screen axis devided by cell size
-  state.grid.cellSize = Math.ceil(state[`screen${long}`] / GRID_SIZE);
-  state.grid[`cell${long}`] = GRID_SIZE;
+  state.grid.cellSize = Math.floor(state[`screen${long}`] / GRID_SIZE);
+  if (state.grid.cellSize <= 1) state.grid.cellSize = 2;
 
-  state.grid[`cell${short}`] = Math.ceil(
+  state.grid[`cell${long}`] =
+    GRID_SIZE +
+    Math.floor(
+      (state[`screen${long}`] - state.grid.cellSize * GRID_SIZE) /
+        state.grid.cellSize
+    );
+
+  state.grid[`cell${short}`] = Math.floor(
     state[`screen${short}`] / state.grid.cellSize
   );
 
