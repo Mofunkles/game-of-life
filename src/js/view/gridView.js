@@ -1,30 +1,14 @@
 class GridView {
   parentElement = document.querySelector('.grid-canvas');
 
-  renderCanvas = function (canvas, grid) {
-    const { context, paths } = canvas;
-    const { cellWidth: width, cellHeight: height } = grid;
+  renderCanvas = function (canvas) {
+    const { context, path } = canvas;
+    const width = this.parentElement.width;
+    const height = this.parentElement.height;
 
-    context.clearRect(
-      0,
-      0,
-      this.parentElement.width,
-      this.parentElement.height
-    );
-    for (let i = 0; i < width; i++) {
-      for (let j = 0; j < height; j++) {
-        if (
-          grid.cells[j * width + i] === 0 &&
-          grid.cellsBuffer[j * width + i] === 0
-        )
-          continue;
-        let deadOrAlive =
-          grid.cells[j * width + i] === 1 ? `254, 96, 57` : '45, 50, 53';
-
-        context.fillStyle = `rgb(${deadOrAlive})`;
-        context.fill(paths[j * width + i]);
-      }
-    }
+    context.clearRect(0, 0, width, height);
+    context.fillStyle = 'rgb(254, 96, 57)';
+    context.fill(path);
   };
 
   context(state) {

@@ -8,7 +8,7 @@ export const state = {
   simulation: null,
   canvas: {
     context: null,
-    paths: [],
+    path: null,
   },
   grid: {
     cells: [],
@@ -50,21 +50,28 @@ const generateCells = function (pattern) {
     if (state.grid.cells[i] === 1) state.grid.liveCells++;
     state.grid.cellNeighboursMap.push(cellNeighbours(i));
   }
+
+  state.grid.cellsBuffer = [...state.grid.cells];
 };
 
-const generatePaths = function () {
+export const generatePaths = function () {
   const { cellSize: size, cellWidth: width, cellHeight: height } = state.grid;
-  const paths = [];
+  const path = new Path2D();
 
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
-      const cell = new Path2D();
-      cell.arc(i * size, j * size, size / 2, Math.PI * 2, false);
-      paths[j * width + i] = cell;
+      if (
+        state.grid.cells[j * width + i] === 0 &&
+        state.grid.cellsBuffer[j * width + i] === 0
+      )
+        continue;
+
+      path.moveTo(i * size, j * size);
+      path.arc(i * size, j * size, size / 2, Math.PI * 2, false);
     }
   }
 
-  state.canvas.paths = paths;
+  state.canvas.path = path;
 };
 
 export const generateGrid = function (pattern) {
@@ -181,6 +188,7 @@ export const swapBuffer = function () {
 
 export const simulateGeneration = function () {
   state.grid.cells.forEach((cell, index) => {
+    if (cell === 0 && neighboursCount(index) === 0) return;
     state.grid.cellsBuffer[index] = deadOrAlive(cell, neighboursCount(index))
       ? 1
       : 0;

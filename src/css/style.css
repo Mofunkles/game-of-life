@@ -71,6 +71,7 @@ body {
   outline: none;
   transition: transform 0.3s;
   backface-visibility: hidden;
+  cursor: pointer;
 }
 @media (max-width: 61.625em) {
   .button {

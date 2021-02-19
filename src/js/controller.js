@@ -4,6 +4,10 @@ import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
 
+// either get painting working or ditch empty/fill
+// possibly make horizontal layout
+// make more declarative
+
 const controlWindowResolution = function (event) {
   const [observer] = event;
   const { width, height } = observer.contentRect;
@@ -29,6 +33,7 @@ const controlShowHelp = function () {
 const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
+    model.generatePaths();
     GridView.renderCanvas(model.state.canvas, model.state.grid);
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);

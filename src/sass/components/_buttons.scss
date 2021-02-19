@@ -10,6 +10,7 @@
   outline: none;
   transition: transform 0.3s;
   backface-visibility: hidden;
+  cursor: pointer;
 
   @include responsive(large) {
     height: 4rem;
