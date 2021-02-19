@@ -20,9 +20,9 @@ class PanelView {
         handlers.stop();
       }
 
-      if (clicked.dataset.button === 'clear') handlers.clear();
-      if (clicked.dataset.button === 'fill') handlers.fill();
       if (clicked.dataset.button === 'random') handlers.random();
+      if (clicked.dataset.button === 'line') handlers.line();
+      if (clicked.dataset.button === 'bunnies') handlers.bunnies();
       if (clicked.dataset.button === 'gosper') handlers.gosper();
       if (clicked.dataset.button === 'help') handlers.help();
     });

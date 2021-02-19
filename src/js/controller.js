@@ -13,9 +13,9 @@ const controlWindowResolution = function (event) {
   controlGenerateGrid();
 };
 
-const controlGenerateGrid = function (pattern = 'random') {
-  model.generateGrid(pattern);
+const controlGenerateGrid = function (initial = 'random') {
   model.state.canvas.context = GridView.context(model.state);
+  model.generateGrid(initial);
   GridView.renderCanvas(model.state.canvas, model.state.grid);
   PanelView.updateGenerations(model.state.grid.generation);
   PanelView.updateLiveCells(model.state.grid.liveCells);
@@ -42,24 +42,6 @@ const controlStopSimulation = function () {
   model.state.simulation = null;
 };
 
-const controlInitialClear = function () {
-  if (model.state.simulation) {
-    controlStopSimulation();
-    PanelView.toggleControlButton();
-  }
-
-  controlGenerateGrid('clear');
-};
-
-const controlInitialFill = function () {
-  if (model.state.simulation) {
-    controlStopSimulation();
-    PanelView.toggleControlButton();
-  }
-
-  controlGenerateGrid('fill');
-};
-
 const controlInitialRandom = function () {
   if (model.state.simulation) {
     controlStopSimulation();
@@ -67,6 +49,24 @@ const controlInitialRandom = function () {
   }
 
   controlGenerateGrid('random');
+};
+
+const controlInitialLine = function () {
+  if (model.state.simulation) {
+    controlStopSimulation();
+    PanelView.toggleControlButton();
+  }
+
+  controlGenerateGrid('line');
+};
+
+const controlInitialBunnies = function () {
+  if (model.state.simulation) {
+    controlStopSimulation();
+    PanelView.toggleControlButton();
+  }
+
+  controlGenerateGrid('bunnies');
 };
 
 const controlInitialGosper = function () {
@@ -86,9 +86,9 @@ const controlInitialGosper = function () {
     help: controlShowHelp,
     start: controlStartSimulation,
     stop: controlStopSimulation,
-    clear: controlInitialClear,
-    fill: controlInitialFill,
     random: controlInitialRandom,
+    line: controlInitialLine,
+    bunnies: controlInitialBunnies,
     gosper: controlInitialGosper,
   });
 

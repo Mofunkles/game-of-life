@@ -1,6 +1,6 @@
 import { GRID_SIZE, RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS } from './config.js';
 import { randomNumber, randomBinary } from './utility.js';
-import { gosper } from './patterns.js';
+import { generatePattern } from './patterns.js';
 
 export const state = {
   screenWidth: window.innerWidth,
@@ -24,8 +24,6 @@ export const state = {
 };
 
 const resetGrid = function () {
-  state.canvas.context = null;
-  state.canvas.paths = [];
   state.grid.cells = [];
   state.grid.cellsBuffer = [];
   state.grid.cellNeighboursMap = [];
@@ -37,16 +35,15 @@ const resetGrid = function () {
   state.grid.liveCells = 0;
 };
 
-const generateCells = function (pattern) {
+const generateCells = function (initial) {
   const seed = randomNumber(RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS);
-  const prefab = pattern === 'gosper' ? gosper(state.grid.cellWidth) : null;
+  const pattern =
+    initial !== 'random' ? generatePattern(initial, state.grid) : null;
 
   for (let i = 0; i < state.grid.cellCount; i++) {
-    if (pattern === 'clear') state.grid.cells.push(0);
-    if (pattern === 'fill') state.grid.cells.push(1);
-    if (pattern === 'random') state.grid.cells.push(randomBinary(seed));
-    if (prefab)
-      state.grid.cells.push(prefab.some(coord => coord === i) ? 1 : 0);
+    if (initial === 'random') state.grid.cells.push(randomBinary(seed));
+    else state.grid.cells.push(pattern.some(coord => coord === i) ? 1 : 0);
+
     if (state.grid.cells[i] === 1) state.grid.liveCells++;
     state.grid.cellNeighboursMap.push(cellNeighbours(i));
   }
@@ -88,10 +85,18 @@ export const generateGrid = function (pattern) {
   // cell size is the longer screen axis divided by desired grid size
   // longer grid axis is assigned grid size from config
   // shorter grid axis is the shorter screen axis devided by cell size
-  state.grid.cellSize = Math.ceil(state[`screen${long}`] / GRID_SIZE);
-  state.grid[`cell${long}`] = GRID_SIZE;
 
-  state.grid[`cell${short}`] = Math.ceil(
+  state.grid.cellSize = Math.floor(state[`screen${long}`] / GRID_SIZE);
+  if (state.grid.cellSize <= 1) state.grid.cellSize = 2;
+
+  state.grid[`cell${long}`] =
+    GRID_SIZE +
+    Math.floor(
+      (state[`screen${long}`] - state.grid.cellSize * GRID_SIZE) /
+        state.grid.cellSize
+    );
+
+  state.grid[`cell${short}`] = Math.floor(
     state[`screen${short}`] / state.grid.cellSize
   );
 
@@ -191,7 +196,6 @@ export const swapBuffer = function () {
 
 export const simulateGeneration = function () {
   state.grid.cells.forEach((cell, index) => {
-    if (cell === 0 && neighboursCount(index) === 0) return;
     state.grid.cellsBuffer[index] = deadOrAlive(cell, neighboursCount(index))
       ? 1
       : 0;
