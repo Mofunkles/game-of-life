@@ -4,10 +4,6 @@ import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
 import PanelView from './view/panelView.js';
 
-// either get painting working or ditch empty/fill
-// possibly make horizontal layout
-// make more declarative
-
 const controlWindowResolution = function (event) {
   const [observer] = event;
   const { width, height } = observer.contentRect;

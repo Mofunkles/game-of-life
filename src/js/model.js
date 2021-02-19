@@ -57,6 +57,7 @@ const generateCells = function (pattern) {
 export const generatePaths = function () {
   const { cellSize: size, cellWidth: width, cellHeight: height } = state.grid;
   const path = new Path2D();
+  const shape = size > 3 ? 'arc' : 'rect';
 
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
@@ -67,7 +68,9 @@ export const generatePaths = function () {
         continue;
 
       path.moveTo(i * size, j * size);
-      path.arc(i * size, j * size, size / 2, Math.PI * 2, false);
+      shape === 'arc'
+        ? path.arc(i * size, j * size, size / 2, Math.PI * 2, false)
+        : path.rect(i * size, j * size, size, size);
     }
   }
 
