@@ -76,15 +76,8 @@ export const generatePaths = function () {
 
 export const generateGrid = function (pattern) {
   resetGrid();
-
-  // determine long / short axis
   const long = state.screenWidth < state.screenHeight ? 'Height' : 'Width';
   const short = long === 'Height' ? 'Width' : 'Height';
-
-  // cell size is to be a square at any screen resolution or orientation
-  // cell size is the longer screen axis divided by desired grid size
-  // longer grid axis is assigned grid size from config
-  // shorter grid axis is the shorter screen axis devided by cell size
 
   state.grid.cellSize = Math.floor(state[`screen${long}`] / GRID_SIZE);
   if (state.grid.cellSize <= 1) state.grid.cellSize = 2;
