@@ -1,11 +1,9 @@
-import { GRID_SIZE } from './config.js';
-
-export const generatePattern = function (initial, grid) {
+export const generatePattern = function (initial, grid, size) {
   const { cellWidth: width, cellHeight: height } = grid;
 
   if (initial === 'line') return line(width, height);
-  if (initial === 'bunnies') return bunnies(width, height);
-  if (initial === 'gosper') return gosper(width);
+  if (initial === 'bunnies') return bunnies(width, size);
+  if (initial === 'gosper') return gosper(width, size);
 };
 
 const line = function (width, height) {
@@ -19,12 +17,12 @@ const line = function (width, height) {
   return pattern;
 };
 
-const bunnies = function (width, height) {
+const bunnies = function (width, size) {
   const baseWidth = 8;
   const start = Math.floor(
-    width * Math.floor(GRID_SIZE / 4) + Math.floor((width - baseWidth) / 2)
+    width * Math.floor(size / 4) + Math.floor((width - baseWidth) / 2)
   );
-  //const start = Math.floor(Math.floor(width * height) / 2);
+
   const basePattern = [0, 6, 10, 14, 18, 21, 23, 25, 27];
 
   return basePattern.map(coord => {
@@ -34,10 +32,10 @@ const bunnies = function (width, height) {
   });
 };
 
-const gosper = function (width) {
+const gosper = function (width, size) {
   const baseWidth = 36;
   const start = Math.floor(
-    width * Math.floor(GRID_SIZE / 8) + Math.floor((width - baseWidth) / 3)
+    width * Math.floor(size / 8) + Math.floor((width - baseWidth) / 3)
   );
 
   // prettier-ignore
