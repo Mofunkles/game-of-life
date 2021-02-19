@@ -1,10 +1,18 @@
-import { GRID_SIZE, RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS } from './config.js';
+import {
+  GRID_SIZE_SMALL,
+  GRID_SIZE_MEDIUM,
+  GRID_SIZE_LARGE,
+  RANDOM_LOWER_BIAS,
+  RANDOM_UPPER_BIAS,
+} from './config.js';
 import { randomNumber, randomBinary } from './utility.js';
 import { generatePattern } from './patterns.js';
 
 export const state = {
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
+  size: 'medium',
+  pattern: 'random',
   simulation: null,
   canvas: {
     context: null,
@@ -35,13 +43,15 @@ const resetGrid = function () {
   state.grid.liveCells = 0;
 };
 
-const generateCells = function (initial) {
+const generateCells = function () {
   const seed = randomNumber(RANDOM_LOWER_BIAS, RANDOM_UPPER_BIAS);
   const pattern =
-    initial !== 'random' ? generatePattern(initial, state.grid) : null;
+    state.pattern !== 'random'
+      ? generatePattern(state.pattern, state.grid, state.size)
+      : null;
 
   for (let i = 0; i < state.grid.cellCount; i++) {
-    if (initial === 'random') state.grid.cells.push(randomBinary(seed));
+    if (state.pattern === 'random') state.grid.cells.push(randomBinary(seed));
     else state.grid.cells.push(pattern.some(coord => coord === i) ? 1 : 0);
 
     if (state.grid.cells[i] === 1) state.grid.liveCells++;
@@ -59,8 +69,10 @@ export const generatePaths = function () {
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
       if (
-        state.grid.cells[j * width + i] === 0 &&
-        state.grid.cellsBuffer[j * width + i] === 0
+        (state.grid.cells[j * width + i] === 0 &&
+          state.grid.cellsBuffer[j * width + i] === 0) ||
+        (state.grid.cells[j * width + i] === 1 &&
+          state.grid.cellsBuffer[j * width + i] === 0)
       )
         continue;
 
@@ -74,18 +86,23 @@ export const generatePaths = function () {
   state.canvas.path = path;
 };
 
-export const generateGrid = function (pattern) {
+export const generateGrid = function (pattern, size) {
   resetGrid();
+  if (size === 'small') state.size = GRID_SIZE_SMALL;
+  if (size === 'medium') state.size = GRID_SIZE_MEDIUM;
+  if (size === 'large') state.size = GRID_SIZE_LARGE;
+  state.pattern = pattern;
+
   const long = state.screenWidth < state.screenHeight ? 'Height' : 'Width';
   const short = long === 'Height' ? 'Width' : 'Height';
 
-  state.grid.cellSize = Math.floor(state[`screen${long}`] / GRID_SIZE);
+  state.grid.cellSize = Math.floor(state[`screen${long}`] / state.size);
   if (state.grid.cellSize <= 1) state.grid.cellSize = 2;
 
   state.grid[`cell${long}`] =
-    GRID_SIZE +
+    state.size +
     Math.floor(
-      (state[`screen${long}`] - state.grid.cellSize * GRID_SIZE) /
+      (state[`screen${long}`] - state.grid.cellSize * state.size) /
         state.grid.cellSize
     );
 
@@ -95,7 +112,7 @@ export const generateGrid = function (pattern) {
 
   state.grid.cellCount = state.grid.cellWidth * state.grid.cellHeight;
 
-  generateCells(pattern);
+  generateCells();
   generatePaths();
 };
 
@@ -194,8 +211,4 @@ export const simulateGeneration = function () {
       : 0;
   });
   state.grid.generation++;
-};
-
-export const updateCell = function (index) {
-  state.grid.cells[index] = state.grid.cells[index] === 1 ? 0 : 1;
 };

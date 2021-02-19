@@ -21,6 +21,18 @@
 
     <canvas class="grid-canvas">Canvas Unsupported! :(</canvas>
 
+    <section class="options">
+      <h2 class="options__title">Configuration</h2>
+      <div class="options__grid-size">
+        <h2 class="grid-size__title">Grid Size</h2>
+        <div class="buttons">
+          <button class="button button--grid-size" data-button="small">Small</button>
+          <button class="button button--grid-size" data-button="medium" disabled>Medium</button>
+          <button class="button button--grid-size" data-button="large">Large</button>
+        </div>
+      </div>
+    </section>
+
     <section class="help hidden">
       <div class="help__grid-details">
         <ul class="grid-details__list">
@@ -70,6 +82,7 @@
           <p class="statistic">Generations<span class="statistic--number generations-number">-</span></p>
           <p class="statistic">Live Cells<span class="statistic--number livecells-number">-</span></p>
         </div>
+        <button class="button button--small" data-button="options">C</button>
         <button class="button button--small" data-button="help">?</button>
       </div>
       <div class="control-panel__buttons">

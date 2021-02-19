@@ -2,6 +2,7 @@ import { TICK_RATE } from './config.js';
 import * as model from './model.js';
 import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
+import OptionsView from './view/optionsView.js';
 import PanelView from './view/panelView.js';
 
 const controlWindowResolution = function (event) {
@@ -10,20 +11,28 @@ const controlWindowResolution = function (event) {
   model.state.screenWidth = width;
   model.state.screenHeight = height;
 
-  controlGenerateGrid();
+  controlGenerateGrid(model.state.pattern, model.state.size);
 };
 
-const controlGenerateGrid = function (initial = 'random') {
+const controlGenerateGrid = function (initial, size) {
   model.state.canvas.context = GridView.context(model.state);
-  model.generateGrid(initial);
+  model.generateGrid(initial, size);
   GridView.renderCanvas(model.state.canvas, model.state.grid);
   PanelView.updateGenerations(model.state.grid.generation);
   PanelView.updateLiveCells(model.state.grid.liveCells);
   HelpView.updateDetails(model.state.grid);
 };
 
+const controlGridSize = function (size) {
+  controlGenerateGrid(model.state.pattern, size);
+};
+
 const controlShowHelp = function () {
   HelpView.toggleVisibility();
+};
+
+const controlShowOptions = function () {
+  OptionsView.toggleVisibility();
 };
 
 const controlStartSimulation = function () {
@@ -48,7 +57,7 @@ const controlInitialRandom = function () {
     PanelView.toggleControlButton();
   }
 
-  controlGenerateGrid('random');
+  controlGenerateGrid('random', model.state.size);
 };
 
 const controlInitialLine = function () {
@@ -57,7 +66,7 @@ const controlInitialLine = function () {
     PanelView.toggleControlButton();
   }
 
-  controlGenerateGrid('line');
+  controlGenerateGrid('line', model.state.size);
 };
 
 const controlInitialBunnies = function () {
@@ -66,7 +75,7 @@ const controlInitialBunnies = function () {
     PanelView.toggleControlButton();
   }
 
-  controlGenerateGrid('bunnies');
+  controlGenerateGrid('bunnies', model.state.size);
 };
 
 const controlInitialGosper = function () {
@@ -75,7 +84,7 @@ const controlInitialGosper = function () {
     PanelView.toggleControlButton();
   }
 
-  controlGenerateGrid('gosper');
+  controlGenerateGrid('gosper', model.state.size);
 };
 
 (function () {
@@ -83,14 +92,19 @@ const controlInitialGosper = function () {
   resize.observe(GridView.parentElement);
 
   PanelView.addHandlerButton({
-    help: controlShowHelp,
     start: controlStartSimulation,
     stop: controlStopSimulation,
     random: controlInitialRandom,
     line: controlInitialLine,
     bunnies: controlInitialBunnies,
     gosper: controlInitialGosper,
+    help: controlShowHelp,
+    options: controlShowOptions,
   });
 
   HelpView.addHandlerShowHelp(controlShowHelp);
+  OptionsView.addHandlerShowOptions({
+    options: controlShowOptions,
+    button: controlGridSize,
+  });
 })();
