@@ -5,6 +5,7 @@
   font-weight: 300;
   src: local(""), url("../fonts/poppins-v15-latin-300.woff2") format("woff2"), url("../fonts/poppins-v15-latin-300.woff") format("woff");
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* poppins-regular - latin */
 @font-face {
@@ -13,6 +14,7 @@
   font-weight: 400;
   src: local(""), url("../fonts/poppins-v15-latin-regular.woff2") format("woff2"), url("../fonts/poppins-v15-latin-regular.woff") format("woff");
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* poppins-500 - latin */
 @font-face {
@@ -21,6 +23,7 @@
   font-weight: 500;
   src: local(""), url("../fonts/poppins-v15-latin-500.woff2") format("woff2"), url("../fonts/poppins-v15-latin-500.woff") format("woff");
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* poppins-700 - latin */
 @font-face {
@@ -29,6 +32,7 @@
   font-weight: 700;
   src: local(""), url("../fonts/poppins-v15-latin-700.woff2") format("woff2"), url("../fonts/poppins-v15-latin-700.woff") format("woff");
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 :root {
   --primary-color: 191, 54, 57;
@@ -161,7 +165,7 @@ body {
   transform: translate(-50%, -60%);
   z-index: 30;
   border-radius: 4rem;
-  transition: all 0.6s ease-out;
+  transition: all 0.2s ease-out;
   display: flex;
 }
 @media (max-width: 28.125em) {
@@ -207,7 +211,7 @@ body {
   opacity: 0;
   position: fixed;
   transform: scale(0.1);
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .grid-details__list {
@@ -365,7 +369,7 @@ body {
   border-radius: 2rem;
   padding: 2rem 4rem;
   z-index: 30;
-  transition: all 0.6s ease-out;
+  transition: all 0.2s ease-out;
 }
 @media (max-width: 28.125em) {
   .options {
@@ -404,7 +408,7 @@ body {
   opacity: 0;
   position: fixed;
   transform: scale(0.1);
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .grid-size__title {
