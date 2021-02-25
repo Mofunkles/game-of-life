@@ -1,16 +1,18 @@
+@use "../abstracts/mixins";
+
 .header {
   grid-column: center-start / center-end;
   display: flex;
   justify-content: center;
   z-index: 20;
 
-  @include glassmorphism(0.3);
+  @include mixins.glassmorphism(0.3);
   width: 40rem;
   margin-top: 2rem;
   padding: 2rem;
   border-radius: 2rem;
 
-  @include responsive(large) {
+  @include mixins.responsive(large) {
     width: 100%;
     margin-top: 0;
     border-radius: 0;
