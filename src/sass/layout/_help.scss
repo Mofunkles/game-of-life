@@ -1,0 +1,86 @@
+@use "../abstracts/mixins";
+
+.help {
+  width: 40rem;
+  height: 40rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: 30;
+  border-radius: 4rem;
+  transition: all 0.2s ease-out;
+
+  display: flex;
+
+  @include mixins.responsive(small) {
+    width: 30rem;
+    height: 30rem;
+    transform: translate(-50%, -70%);
+  }
+
+  &__grid-statistics {
+    @include mixins.glassmorphism(0.6);
+    width: 34%;
+    border-top-left-radius: 4rem;
+    border-bottom-left-radius: 4rem;
+    padding: 4rem 2rem;
+
+    @include mixins.responsive(small) {
+      padding: 3rem 1.5rem;
+    }
+  }
+
+  &__information {
+    @include mixins.glassmorphism(0.3);
+    width: 66%;
+    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 4rem;
+    padding: 4rem 2rem;
+    z-index: -1;
+
+    @include mixins.responsive(small) {
+      padding: 3rem 1.5rem;
+    }
+  }
+}
+
+.grid-statistics {
+  &__list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    list-style: none;
+
+    & .statistic {
+      text-align: center;
+      position: relative;
+
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+}
+
+.information {
+  &__links {
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem 0;
+
+    @include mixins.responsive(small) {
+      margin: 2rem 0;
+    }
+  }
+
+  &__list {
+    margin-top: 1rem;
+    padding-left: 2rem;
+
+    @include mixins.responsive(small) {
+      padding-left: 1.5rem;
+    }
+  }
+}

@@ -1,59 +1,21 @@
+@use "../abstracts/mixins";
+
 .header {
   grid-column: center-start / center-end;
   display: flex;
   justify-content: center;
   z-index: 20;
 
-  @include glassmorphism(0.3);
+  @include mixins.glassmorphism(0.3);
   width: 40rem;
   margin-top: 2rem;
   padding: 2rem;
   border-radius: 2rem;
 
-  @include responsive(large) {
+  @include mixins.responsive(large) {
     width: 100%;
     margin-top: 0;
     border-radius: 0;
     padding: 1rem;
-  }
-
-  &__title {
-    font-size: 5rem;
-    font-weight: 700;
-    line-height: 1;
-
-    @include responsive(large) {
-      text-align: center;
-    }
-
-    @include responsive(medium) {
-      font-size: 4rem;
-    }
-
-    @include responsive(small) {
-      font-size: 3rem;
-    }
-
-    &--sub {
-      display: block;
-      width: 55%;
-      background-color: rgb(var(--primary-color));
-      color: rgb(var(--light-color));
-      font-size: 2rem;
-      line-height: 0.5;
-      padding-left: 2px;
-
-      @include responsive(large) {
-        text-align: left;
-      }
-
-      @include responsive(medium) {
-        font-size: 1.6rem;
-      }
-
-      @include responsive(small) {
-        font-size: 1.2rem;
-      }
-    }
   }
 }

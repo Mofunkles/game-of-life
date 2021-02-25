@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @mixin glassmorphism($intensity) {
   background-image: linear-gradient(
     rgba(var(--light-color), $intensity),
