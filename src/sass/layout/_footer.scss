@@ -11,7 +11,7 @@
     border-radius: 0;
   }
 
-  &__statistics {
+  &__simulation-statistics {
     @include glassmorphism(0.6);
     border-top-left-radius: 4rem;
     border-top-right-radius: 4rem;
@@ -31,13 +31,6 @@
     @include responsive(medium) {
       padding: 0.5rem 2rem;
     }
-  }
-
-  &__text {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin-left: 0.5rem;
   }
 
   &__buttons {
@@ -62,7 +55,7 @@
     }
   }
 
-  &__simulation {
+  &__simulation-controls {
     grid-column: 1 / 2;
 
     @include responsive(large) {
@@ -81,7 +74,7 @@
     }
   }
 
-  &__initial-state {
+  &__initial-state-controls {
     grid-column: 3 / 4;
 
     @include responsive(large) {
@@ -108,26 +101,29 @@
   }
 }
 
-.statistic {
-  font-size: 2rem;
-  font-weight: 300;
-  text-align: left;
+.simulation-statistics {
+  &__text {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+    & .statistic {
+      &:not(:first-child) {
+        margin-left: 4rem;
 
-  @include responsive(small) {
-    font-size: 1.2rem;
-  }
+        @include responsive(small) {
+          margin-left: 2rem;
+        }
+      }
 
-  @include responsive(medium) {
-    font-size: 1.2rem;
-  }
+      &--number {
+        margin-left: 2rem;
 
-  &--number {
-    color: rgb(var(--primary-color));
-    font-weight: 700;
-    text-align: left;
-    margin-left: 2rem;
+        @include responsive(small) {
+          margin-left: 1rem;
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,7 @@
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  transform: scale(0.1);
+  transition: all 0.2s ease-in;
+}

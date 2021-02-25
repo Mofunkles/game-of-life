@@ -20,19 +20,16 @@
 
   <body>
     <header class="header">
-      <h1 class="header__title">
-        <span class="header__title--sub">Conway's</span>
-        Game of Life
-      </h1>
+      <h1 class="title"><span class="title title__sub">Conway's</span>Game of Life</h1>
     </header>
 
     <canvas class="grid-canvas">Canvas Unsupported! :(</canvas>
 
     <section class="options hidden">
-      <h2 class="options__title">Configuration</h2>
-      <div class="options__grid-size">
-        <h2 class="grid-size__title">Grid Size</h2>
-        <div class="buttons">
+      <h2 class="title__sub title__sub--centered">Configuration</h2>
+      <div class="options__option">
+        <h3 class="title">Grid Size</h3>
+        <div class="options__buttons">
           <button class="button button--grid-size" data-button="small">Small</button>
           <button class="button button--grid-size" data-button="medium" disabled>Medium</button>
           <button class="button button--grid-size" data-button="large">Large</button>
@@ -41,40 +38,23 @@
     </section>
 
     <section class="help hidden">
-      <div class="help__grid-details">
-        <ul class="grid-details__list">
-          <li class="grid-details__list-item">
-            <p class="grid-details__detail">
-              <span class="grid-details__detail--number gridwidth-number">-</span>Grid Width
-            </p>
-          </li>
-          <li class="grid-details__list-item">
-            <p class="grid-details__detail">
-              <span class="grid-details__detail--number gridheight-number">-</span>Grid Height
-            </p>
-          </li>
-          <li class="grid-details__list-item">
-            <p class="grid-details__detail">
-              <span class="grid-details__detail--number cellcount-number">-</span>Cell Count
-            </p>
-          </li>
-          <li class="grid-details__list-item">
-            <p class="grid-details__detail">
-              <span class="grid-details__detail--number cellsize-number">-</span>Cell Size
-            </p>
-          </li>
+      <div class="help__grid-statistics">
+        <ul class="grid-statistics__list">
+          <li class="statistic"><span class="statistic statistic--number gridheight-number">9999</span>Grid Height</li>
+          <li class="statistic"><span class="statistic statistic--number gridwidth-number">9999</span>Grid Width</li>
+          <li class="statistic"><span class="statistic statistic--number cellcount-number">9999</span>Cell Count</li>
+          <li class="statistic"><span class="statistic statistic--number cellsize-number">9999</span>Cell Size</li>
         </ul>
       </div>
-      <div class="help__rules">
-        <h2 class="rules__title">Conway's Game of Life</h2>
-        <div class="rules__links">
-          <a class="rules__link" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank"
-            >📑 WIKI</a
-          >
-          <a class="rules__link" href="https://github.com/Mofunkles/game-of-life" target="_blank">🔧 GITHUB</a>
+
+      <div class="help__information">
+        <h2 class="title__sub title__sub--centered">Find Out More</h2>
+        <div class="information__links">
+          <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">📑 WIKI</a>
+          <a href="https://github.com/Mofunkles/game-of-life" target="_blank">🔧 GITHUB</a>
         </div>
-        <h3 class="rules__header">Rules</h3>
-        <ul class="rules__list">
+        <h3 class="title">Rules</h3>
+        <ul class="information__list">
           <li>Any live cell with fewer than two live neighbours dies.</li>
           <li>Any live cell with two or three live neighbours lives.</li>
           <li>Any live cell with more than three live neighbours dies.</li>
@@ -84,20 +64,21 @@
     </section>
 
     <footer class="control-panel">
-      <div class="control-panel__statistics">
-        <div class="control-panel__text">
-          <p class="statistic">Generations<span class="statistic--number generations-number">-</span></p>
-          <p class="statistic">Live Cells<span class="statistic--number livecells-number">-</span></p>
+      <div class="control-panel__simulation-statistics">
+        <div class="simulation-statistics__text">
+          <p class="statistic">Generations<span class="statistic statistic--number generations-number">9999</span></p>
+          <p class="statistic">Live Cells<span class="statistic statistic--number livecells-number">9999</span></p>
         </div>
         <button class="button button--small" data-button="options">C</button>
         <button class="button button--small" data-button="help">?</button>
       </div>
+
       <div class="control-panel__buttons">
-        <div class="control-panel__simulation">
+        <div class="control-panel__simulation-controls">
           <button class="button button--control button-start" data-button="start">Start</button>
           <button class="button button--control button-stop" data-button="stop" disabled>Stop</button>
         </div>
-        <div class="control-panel__initial-state">
+        <div class="control-panel__initial-state-controls">
           <button class="button button--initial" data-button="random">Random</button>
           <button class="button button--initial" data-button="line">The Line</button>
           <button class="button button--initial" data-button="bunnies">Bunnies</button>

@@ -16,44 +16,4 @@
     border-radius: 0;
     padding: 1rem;
   }
-
-  &__title {
-    font-size: 5rem;
-    font-weight: 700;
-    line-height: 1;
-
-    @include responsive(large) {
-      text-align: center;
-    }
-
-    @include responsive(medium) {
-      font-size: 4rem;
-    }
-
-    @include responsive(small) {
-      font-size: 3rem;
-    }
-
-    &--sub {
-      display: block;
-      width: 55%;
-      background-color: rgb(var(--primary-color));
-      color: rgb(var(--light-color));
-      font-size: 2rem;
-      line-height: 0.5;
-      padding-left: 2px;
-
-      @include responsive(large) {
-        text-align: left;
-      }
-
-      @include responsive(medium) {
-        font-size: 1.6rem;
-      }
-
-      @include responsive(small) {
-        font-size: 1.2rem;
-      }
-    }
-  }
 }
