@@ -10,7 +10,7 @@ class HelpView {
       const clicked = event.target.closest('.help');
       if (!clicked) return;
 
-      if (!event.target.classList.contains('rules__link')) handler();
+      if (!event.target.classList.contains('information-link')) handler();
     });
   }
 
