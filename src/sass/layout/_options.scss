@@ -1,7 +1,7 @@
-@use "../abstracts/mixins";
+@use "../abstracts" as *;
 
 .options {
-  @include mixins.glassmorphism(0.3);
+  @include glassmorphism(0.3);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -11,7 +11,7 @@
   z-index: 30;
   transition: all 0.2s ease-out;
 
-  @include mixins.responsive(small) {
+  @include responsive(small) {
     transform: translate(-50%, -70%);
     padding: 1.5rem;
   }
@@ -28,7 +28,7 @@
     & .button:not(:first-of-type) {
       margin-left: 3rem;
 
-      @include mixins.responsive(small) {
+      @include responsive(small) {
         margin-left: 0.5rem;
       }
     }
