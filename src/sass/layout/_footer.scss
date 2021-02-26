@@ -1,4 +1,4 @@
-@use "../abstracts/mixins";
+@use "../abstracts" as *;
 
 .control-panel {
   grid-column: center-start / center-end;
@@ -9,12 +9,12 @@
   border-top-right-radius: 4rem;
   position: relative;
 
-  @include mixins.responsive(large) {
+  @include responsive(large) {
     border-radius: 0;
   }
 
   &__simulation-statistics {
-    @include mixins.glassmorphism(0.6);
+    @include glassmorphism(0.6);
     border-top-left-radius: 4rem;
     border-top-right-radius: 4rem;
     padding: 1rem 4rem;
@@ -26,17 +26,17 @@
       margin-left: 1rem;
     }
 
-    @include mixins.responsive(large) {
+    @include responsive(large) {
       border-radius: 0;
     }
 
-    @include mixins.responsive(medium) {
+    @include responsive(medium) {
       padding: 0.5rem 2rem;
     }
   }
 
   &__buttons {
-    @include mixins.glassmorphism(0.3);
+    @include glassmorphism(0.3);
     padding: 2rem 4rem;
     position: relative;
     z-index: -1;
@@ -44,11 +44,11 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
 
-    @include mixins.responsive(medium) {
+    @include responsive(medium) {
       padding: 1rem 2rem;
     }
 
-    @include mixins.responsive(small) {
+    @include responsive(small) {
       padding: 1rem 1rem;
     }
 
@@ -60,7 +60,7 @@
   &__simulation-controls {
     grid-column: 1 / 2;
 
-    @include mixins.responsive(large) {
+    @include responsive(large) {
       display: grid;
       grid-template-columns: repeat(2, max-content);
       grid-gap: 1rem;
@@ -70,7 +70,7 @@
       }
     }
 
-    @include mixins.responsive(medium) {
+    @include responsive(medium) {
       grid-template-columns: max-content;
       grid-template-rows: repeat(2, max-content);
     }
@@ -79,7 +79,7 @@
   &__initial-state-controls {
     grid-column: 3 / 4;
 
-    @include mixins.responsive(large) {
+    @include responsive(large) {
       display: grid;
       grid-template-columns: repeat(4, max-content);
       grid-gap: 1rem;
@@ -89,13 +89,13 @@
       }
     }
 
-    @include mixins.responsive(medium) {
+    @include responsive(medium) {
       grid-template-columns: repeat(2, max-content);
       grid-template-rows: repeat(2, max-content);
       grid-column-gap: 2rem;
     }
 
-    @include mixins.responsive(small) {
+    @include responsive(small) {
       grid-template-columns: repeat(2, max-content);
       grid-template-rows: repeat(2, max-content);
       grid-column-gap: 1rem;
@@ -114,7 +114,7 @@
       &:not(:first-child) {
         margin-left: 4rem;
 
-        @include mixins.responsive(small) {
+        @include responsive(small) {
           margin-left: 2rem;
         }
       }
@@ -122,7 +122,7 @@
       &--number {
         margin-left: 2rem;
 
-        @include mixins.responsive(small) {
+        @include responsive(small) {
           margin-left: 1rem;
         }
       }

@@ -1,4 +1,5 @@
-@use "../abstracts/mixins" as *;
+@use "../abstracts" as *;
+@use "../vendors/google" as *;
 
 body {
   font-family: 'Poppins', sans-serif;
