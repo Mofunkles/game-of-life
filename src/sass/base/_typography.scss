@@ -12,30 +12,30 @@ h1,
 h1 > span {
   font-size: 5rem;
 
-  @include responsive(large) {
+  @include responsive($large) {
     font-size: 4rem;
   }
 
-  @include responsive(medium) {
+  @include responsive($medium) {
     font-size: 3rem;
   }
 
-  @include responsive(small) {
+  @include responsive($small) {
     font-size: 2rem;
   }
 
   &[class*='__sub'] {
     font-size: 2rem;
 
-    @include responsive(large) {
+    @include responsive($large) {
       font-size: 1.6rem;
     }
 
-    @include responsive(medium) {
+    @include responsive($medium) {
       font-size: 1.2rem;
     }
 
-    @include responsive(small) {
+    @include responsive($small) {
       font-size: 0.8rem;
     }
   }
@@ -45,30 +45,30 @@ h2,
 h2 > span {
   font-size: 3rem;
 
-  @include responsive(large) {
+  @include responsive($large) {
     font-size: 2.55rem;
   }
 
-  @include responsive(medium) {
+  @include responsive($medium) {
     font-size: 2.1rem;
   }
 
-  @include responsive(small) {
+  @include responsive($small) {
     font-size: 1.65rem;
   }
 
   &[class*='__sub'] {
     font-size: 2rem;
 
-    @include responsive(large) {
+    @include responsive($large) {
       font-size: 1.7rem;
     }
 
-    @include responsive(medium) {
+    @include responsive($medium) {
       font-size: 1.4rem;
     }
 
-    @include responsive(small) {
+    @include responsive($small) {
       font-size: 1.1rem;
     }
   }
@@ -78,30 +78,30 @@ h3,
 h3 > span {
   font-size: 1.6rem;
 
-  @include responsive(large) {
+  @include responsive($large) {
     font-size: 1.8rem;
   }
 
-  @include responsive(medium) {
+  @include responsive($medium) {
     font-size: 1.6rem;
   }
 
-  @include responsive(small) {
+  @include responsive($small) {
     font-size: 1.4rem;
   }
 
   &[class*='__sub'] {
     font-size: 1.6rem;
 
-    @include responsive(large) {
+    @include responsive($large) {
       font-size: 1.4rem;
     }
 
-    @include responsive(medium) {
+    @include responsive($medium) {
       font-size: 1.2rem;
     }
 
-    @include responsive(small) {
+    @include responsive($small) {
       font-size: 1rem;
     }
   }
@@ -128,7 +128,7 @@ h3 > span {
 p {
   font-size: 1.6rem;
 
-  @include responsive(small) {
+  @include responsive($small) {
     font-size: 1.2rem;
   }
 }
@@ -146,7 +146,7 @@ p > span.statistic {
 ul {
   font-size: 1.4rem;
 
-  @include responsive(small) {
+  @include responsive($small) {
     font-size: 1rem;
   }
 
@@ -180,7 +180,7 @@ a:visited {
   color: rgb(var(--secondary-color));
   text-decoration: none;
 
-  @include responsive(small) {
+  @include responsive($small) {
     font-size: 1rem;
   }
 }

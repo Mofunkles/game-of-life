@@ -26,7 +26,7 @@ body {
     );
   grid-template-rows: auto 1fr [bottom-start] auto [bottom-end];
 
-  @include responsive(largest) {
+  @include responsive($largest) {
     grid-template-columns: auto [center-start] minmax(auto, 98.6rem) [center-end] auto;
   }
 }

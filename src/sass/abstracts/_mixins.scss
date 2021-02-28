@@ -11,27 +11,7 @@
 }
 
 @mixin responsive($breakpoint) {
-  @if $breakpoint == 'largest' {
-    @media (max-width: $largest) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == 'large' {
-    @media (max-width: $large) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == 'medium' {
-    @media (max-width: $medium) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == 'small' {
-    @media (max-width: $small) {
-      @content;
-    }
+  @media (max-width: #{$breakpoint}) {
+    @content;
   }
 }

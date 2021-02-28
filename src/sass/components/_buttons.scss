@@ -14,12 +14,12 @@
   backface-visibility: hidden;
   cursor: pointer;
 
-  @include responsive(large) {
+  @include responsive($large) {
     height: 4rem;
     width: 10rem;
   }
 
-  @include responsive(small) {
+  @include responsive($small) {
     font-size: 1.2rem;
     height: 3rem;
     width: 8rem;

@@ -9,7 +9,7 @@
   border-top-right-radius: 4rem;
   position: relative;
 
-  @include responsive(large) {
+  @include responsive($large) {
     border-radius: 0;
   }
 
@@ -26,11 +26,11 @@
       margin-left: 1rem;
     }
 
-    @include responsive(large) {
+    @include responsive($large) {
       border-radius: 0;
     }
 
-    @include responsive(medium) {
+    @include responsive($medium) {
       padding: 0.5rem 2rem;
     }
   }
@@ -44,11 +44,11 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
 
-    @include responsive(medium) {
+    @include responsive($medium) {
       padding: 1rem 2rem;
     }
 
-    @include responsive(small) {
+    @include responsive($small) {
       padding: 1rem 1rem;
     }
 
@@ -60,7 +60,7 @@
   &__simulation-controls {
     grid-column: 1 / 2;
 
-    @include responsive(large) {
+    @include responsive($large) {
       display: grid;
       grid-template-columns: repeat(2, max-content);
       grid-gap: 1rem;
@@ -70,7 +70,7 @@
       }
     }
 
-    @include responsive(medium) {
+    @include responsive($medium) {
       grid-template-columns: max-content;
       grid-template-rows: repeat(2, max-content);
     }
@@ -79,7 +79,7 @@
   &__initial-state-controls {
     grid-column: 3 / 4;
 
-    @include responsive(large) {
+    @include responsive($large) {
       display: grid;
       grid-template-columns: repeat(4, max-content);
       grid-gap: 1rem;
@@ -89,13 +89,13 @@
       }
     }
 
-    @include responsive(medium) {
+    @include responsive($medium) {
       grid-template-columns: repeat(2, max-content);
       grid-template-rows: repeat(2, max-content);
       grid-column-gap: 2rem;
     }
 
-    @include responsive(small) {
+    @include responsive($small) {
       grid-template-columns: repeat(2, max-content);
       grid-template-rows: repeat(2, max-content);
       grid-column-gap: 1rem;
@@ -114,7 +114,7 @@
       &:not(:first-child) {
         margin-left: 4rem;
 
-        @include responsive(small) {
+        @include responsive($small) {
           margin-left: 2rem;
         }
       }
@@ -122,7 +122,7 @@
       &--number {
         margin-left: 2rem;
 
-        @include responsive(small) {
+        @include responsive($small) {
           margin-left: 1rem;
         }
       }

@@ -11,7 +11,7 @@
   z-index: 30;
   transition: all 0.2s ease-out;
 
-  @include responsive(small) {
+  @include responsive($small) {
     transform: translate(-50%, -70%);
     padding: 1.5rem;
   }
@@ -28,7 +28,7 @@
     & .button:not(:first-of-type) {
       margin-left: 3rem;
 
-      @include responsive(small) {
+      @include responsive($small) {
         margin-left: 0.5rem;
       }
     }
