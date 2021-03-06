@@ -11,7 +11,10 @@ const controlWindowResolution = function (event) {
   model.state.screenWidth = width;
   model.state.screenHeight = height;
 
-  controlGenerateGrid(model.state.pattern, model.state.size);
+  clearTimeout(model.state.resize);
+  model.state.resize = setTimeout(() => {
+    controlGenerateGrid(model.state.pattern, model.state.size);
+  }, VIEW_RATE);
 };
 
 const controlGenerateGrid = function (initial, size) {

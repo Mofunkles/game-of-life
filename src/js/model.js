@@ -13,6 +13,7 @@ export const state = {
   screenHeight: window.innerHeight,
   size: 'medium',
   pattern: 'random',
+  resize: null,
   simulation: null,
   view: null,
   canvas: {
