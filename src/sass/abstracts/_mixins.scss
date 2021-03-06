@@ -5,9 +5,10 @@
     rgba(var(--light-color), $intensity),
     rgba(var(--light-color), calc(#{$intensity} + 0.3))
   );
-  border: 1px solid rgba(var(--light-color), calc(#{$intensity} - 0.15));
+  border: 1px solid rgba(var(--light-color), calc(#{$intensity} + 0.15));
   box-shadow: 0 0.5rem 3.5rem 0 rgba(black, 0.15);
   backdrop-filter: blur(#{$intensity + 0.15}rem);
+  background-clip: padding-box;
 }
 
 @mixin responsive($breakpoint) {
