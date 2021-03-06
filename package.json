@@ -12,10 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mofunkles/game-of-life.git"
+    "url": "git+ssh://github.com/Mofunkles/game-of-life.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Mofunkles",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Mofunkles/game-of-life/issues"

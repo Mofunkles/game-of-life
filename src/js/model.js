@@ -14,6 +14,7 @@ export const state = {
   size: 'medium',
   pattern: 'random',
   simulation: null,
+  view: null,
   canvas: {
     context: null,
     path: null,
