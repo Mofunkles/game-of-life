@@ -36,11 +36,9 @@
   }
 
   &--grid-size {
-    color: rgb(var(--light-color));
-    background-color: rgb(var(--secondary-color));
-
     &:disabled {
-      color: rgb(var(--secondary-color));
+      color: rgb(var(--light-color));
+      background-color: rgb(var(--secondary-color));
     }
   }
 
@@ -52,6 +50,5 @@
   &--small {
     max-height: 2.5rem;
     max-width: 2.5rem;
-    color: rgb(var(--secondary-color));
   }
 }

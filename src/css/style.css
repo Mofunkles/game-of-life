@@ -335,12 +335,9 @@ a:active {
   background-color: rgb(var(--dark-color));
   cursor: initial;
 }
-.button--grid-size {
+.button--grid-size:disabled {
   color: rgb(var(--light-color));
   background-color: rgb(var(--secondary-color));
-}
-.button--grid-size:disabled {
-  color: rgb(var(--secondary-color));
 }
 .button--control {
   color: rgb(var(--light-color));
@@ -349,7 +346,6 @@ a:active {
 .button--small {
   max-height: 2.5rem;
   max-width: 2.5rem;
-  color: rgb(var(--secondary-color));
 }
 
 .control-panel {
