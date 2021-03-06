@@ -10,7 +10,7 @@
   width: 12rem;
   background-color: rgb(var(--light-color));
   outline: none;
-  transition: transform 0.3s;
+  transition: all 0.2s ease;
   backface-visibility: hidden;
   cursor: pointer;
 
@@ -36,11 +36,9 @@
   }
 
   &--grid-size {
-    color: rgb(var(--light-color));
-    background-color: rgb(var(--secondary-color));
-
     &:disabled {
-      color: rgb(var(--secondary-color));
+      color: rgb(var(--light-color));
+      background-color: rgb(var(--secondary-color));
     }
   }
 
@@ -52,6 +50,5 @@
   &--small {
     max-height: 2.5rem;
     max-width: 2.5rem;
-    color: rgb(var(--secondary-color));
   }
 }

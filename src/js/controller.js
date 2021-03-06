@@ -1,4 +1,4 @@
-import { TICK_RATE } from './config.js';
+import { SIMULATION_RATE, VIEW_RATE } from './config.js';
 import * as model from './model.js';
 import GridView from './view/gridView.js';
 import HelpView from './view/helpView.js';
@@ -40,15 +40,20 @@ const controlStartSimulation = function () {
     model.simulateGeneration();
     model.generatePaths();
     GridView.renderCanvas(model.state.canvas, model.state.grid);
+    model.swapBuffer();
+  }, SIMULATION_RATE);
+
+  model.state.view = setInterval(() => {
     PanelView.updateGenerations(model.state.grid.generation);
     PanelView.updateLiveCells(model.state.grid.liveCells);
-    model.swapBuffer();
-  }, TICK_RATE);
+  }, VIEW_RATE);
 };
 
 const controlStopSimulation = function () {
   clearInterval(model.state.simulation);
+  clearInterval(model.state.view);
   model.state.simulation = null;
+  model.state.view = null;
 };
 
 const controlInitialRandom = function () {
