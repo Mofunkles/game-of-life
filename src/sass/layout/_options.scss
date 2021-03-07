@@ -9,7 +9,7 @@
   border-radius: 2rem;
   padding: 2rem 4rem;
   z-index: 30;
-  transition: all 0.2s ease-out;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s;
 
   @include responsive($small) {
     transform: translate(-50%, -70%);

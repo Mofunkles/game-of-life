@@ -9,7 +9,7 @@
   transform: translate(-50%, -60%);
   z-index: 30;
   border-radius: 4rem;
-  transition: all 0.2s ease-out;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s;
 
   display: flex;
 

@@ -10,9 +10,9 @@
   width: 12rem;
   background-color: rgb(var(--light-color));
   outline: none;
-  transition: all 0.2s ease;
   backface-visibility: hidden;
   cursor: pointer;
+  transition: transform 0.2s ease-out, background-color 0.2s ease-out;
 
   @include responsive($large) {
     height: 4rem;
