@@ -13,14 +13,11 @@ module.exports = {
       title: 'Home',
       template: path.resolve(__dirname, 'src/index.html'),
       filename: 'index.html',
+      inject: false,
     }),
   ],
   module: {
     rules: [
-      {
-        test: /\.html$/,
-        use: ['html-loader'],
-      },
       {
         test: /\.js$/,
         use: ['babel-loader'],

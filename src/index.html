@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A cellular automata simulation written in Javascript emulating John Horton Conway's, Game of Life." />
     <link rel="canonical" href="https://mofunkles-gameoflife.netlify.app/" />
-    <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-v15-latin-300.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-v15-latin-regular.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-v15-latin-500.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-v15-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="<%= require('./fonts/poppins-v15-latin-300.woff2') %>" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="<%= require('./fonts/poppins-v15-latin-regular.woff2') %>" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="<%= require('./fonts/poppins-v15-latin-500.woff2') %>" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="<%= require('./fonts/poppins-v15-latin-700.woff2') %>" crossorigin />
+    <%= htmlWebpackPlugin.tags.headTags[1] %> <%= htmlWebpackPlugin.tags.headTags[0] %>
     <title>Conway's Game of Life - Cellular Automata in Javascript</title>
   </head>
 
