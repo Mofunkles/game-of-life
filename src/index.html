@@ -10,7 +10,11 @@
     <link rel="preload" as="font" type="font/woff2" href="<%= require('./fonts/poppins-v15-latin-regular.woff2') %>" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="<%= require('./fonts/poppins-v15-latin-500.woff2') %>" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="<%= require('./fonts/poppins-v15-latin-700.woff2') %>" crossorigin />
-    <%= htmlWebpackPlugin.tags.headTags[1] %> <%= htmlWebpackPlugin.tags.headTags[0] %>
+    <% _.each(htmlWebpackPlugin.files.css, function(file){ %>
+    <link rel="stylesheet" href="<%= file %>" />
+    <% }); %> <% _.each(htmlWebpackPlugin.files.js, function(file){ %>
+    <script defer src="<%= file %>"></script>
+    <% }); %>
     <title>Conway's Game of Life - Cellular Automata in Javascript</title>
   </head>
 
