@@ -99,7 +99,9 @@ const controlInitialGosper = function () {
 };
 
 const controlPaint = function (event) {
-  model.updateCell(event.clientX, event.clientY);
+  event.type === 'touchmove'
+    ? model.updateCell(event.touches[0].clientX, event.touches[0].clientY)
+    : model.updateCell(event.clientX, event.clientY);
   model.generatePaths();
   GridView.renderCanvas(model.state.canvas);
   PanelView.updateLiveCells(model.state.grid.liveCells);
