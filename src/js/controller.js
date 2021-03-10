@@ -5,6 +5,9 @@ import HelpView from './view/helpView.js';
 import OptionsView from './view/optionsView.js';
 import PanelView from './view/panelView.js';
 
+// mousedown -> +mousemove -> mouseup -> -mousemove
+// mousemove -> find coords -> add to grid
+
 const controlWindowResolution = function (event) {
   const [observer] = event;
   const { width, height } = observer.contentRect;
@@ -20,7 +23,7 @@ const controlWindowResolution = function (event) {
 const controlGenerateGrid = function (initial, size) {
   model.state.canvas.context = GridView.context(model.state);
   model.generateGrid(initial, size);
-  GridView.renderCanvas(model.state.canvas, model.state.grid);
+  GridView.renderCanvas(model.state.canvas);
   PanelView.updateGenerations(model.state.grid.generation);
   PanelView.updateLiveCells(model.state.grid.liveCells);
   HelpView.updateDetails(model.state.grid);
@@ -42,7 +45,7 @@ const controlStartSimulation = function () {
   model.state.simulation = setInterval(() => {
     model.simulateGeneration();
     model.generatePaths();
-    GridView.renderCanvas(model.state.canvas, model.state.grid);
+    GridView.renderCanvas(model.state.canvas);
     model.swapBuffer();
   }, SIMULATION_RATE);
 
@@ -95,9 +98,18 @@ const controlInitialGosper = function () {
   controlGenerateGrid('gosper', model.state.size);
 };
 
+const controlPaint = function (event) {
+  model.updateCell(event.clientX, event.clientY);
+  model.generatePaths();
+  GridView.renderCanvas(model.state.canvas);
+  PanelView.updateLiveCells(model.state.grid.liveCells);
+};
+
 (function () {
   const resize = new ResizeObserver(controlWindowResolution);
   resize.observe(GridView.parentElement);
+
+  GridView.addHandlerPaint(controlPaint);
 
   PanelView.addHandlerButton({
     start: controlStartSimulation,

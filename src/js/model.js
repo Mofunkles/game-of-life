@@ -214,3 +214,17 @@ export const simulateGeneration = function () {
   });
   state.grid.generation++;
 };
+
+const findCell = function (x, y) {
+  const c = state.grid.cellSize;
+  const w = state.grid.cellWidth;
+  return Math.floor(x / c) + w * Math.floor(y / c);
+};
+
+export const updateCell = function (x, y) {
+  const index = findCell(x, y);
+  if (state.grid.cells[index] === 0) {
+    state.grid.cells[index] = 1;
+    state.grid.liveCells++;
+  }
+};

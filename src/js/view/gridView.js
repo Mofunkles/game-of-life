@@ -20,6 +20,16 @@ class GridView {
 
     return context;
   }
+
+  addHandlerPaint(handler) {
+    this.parentElement.addEventListener('mousedown', event => {
+      this.parentElement.addEventListener('mousemove', handler);
+    });
+
+    this.parentElement.addEventListener('mouseup', event => {
+      this.parentElement.removeEventListener('mousemove', handler);
+    });
+  }
 }
 
 export default new GridView();
