@@ -29,6 +29,10 @@ class GridView {
     this.parentElement.addEventListener('mouseup', event => {
       this.parentElement.removeEventListener('mousemove', handler);
     });
+
+    this.parentElement.addEventListener('touchstart', event => {
+      this.parentElement.addEventListener('touchmove', handler);
+    });
   }
 }
 
