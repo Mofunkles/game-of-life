@@ -225,6 +225,7 @@ export const updateCell = function (x, y) {
   const index = findCell(x, y);
   if (state.grid.cells[index] === 0) {
     state.grid.cells[index] = 1;
+    state.grid.cellsBuffer[index] = 1;
     state.grid.liveCells++;
   }
 };
