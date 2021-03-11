@@ -3,6 +3,7 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  height: 100%;
 }
 
 *,
@@ -16,8 +17,7 @@ html {
 body {
   background-color: rgb(var(--dark-color));
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
 
   display: grid;
   grid-template-columns: minmax(5vw, auto) [center-start] minmax(auto, 98.6rem) [center-end] minmax(
