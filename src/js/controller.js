@@ -33,12 +33,12 @@ const controlGridSize = function (size) {
   controlGenerateGrid(model.state.pattern, size);
 };
 
-const controlShowHelp = function () {
-  HelpView.toggleVisibility();
+const controlShowHelp = function (visible) {
+  HelpView.toggleVisibility(visible);
 };
 
-const controlShowOptions = function () {
-  OptionsView.toggleVisibility();
+const controlShowOptions = function (visible) {
+  OptionsView.toggleVisibility(visible);
 };
 
 const controlStartSimulation = function () {
@@ -125,8 +125,6 @@ const controlPaint = function (event) {
   });
 
   HelpView.addHandlerShowHelp(controlShowHelp);
-  OptionsView.addHandlerShowOptions({
-    options: controlShowOptions,
-    button: controlGridSize,
-  });
+  OptionsView.addHandlerShowOptions(controlShowOptions);
+  OptionsView.addHandlerButton(controlGridSize);
 })();

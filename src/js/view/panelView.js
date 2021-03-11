@@ -24,8 +24,8 @@ class PanelView {
       if (clicked.dataset.button === 'line') handlers.line();
       if (clicked.dataset.button === 'bunnies') handlers.bunnies();
       if (clicked.dataset.button === 'gosper') handlers.gosper();
-      if (clicked.dataset.button === 'help') handlers.help();
-      if (clicked.dataset.button === 'options') handlers.options();
+      if (clicked.dataset.button === 'help') handlers.help(true);
+      if (clicked.dataset.button === 'options') handlers.options(true);
     });
   }
 

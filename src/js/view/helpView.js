@@ -1,21 +1,25 @@
 class HelpView {
   parentElement = document.querySelector('.help');
+  modalBackground = document.querySelector('.modal-background');
   gridWidth = this.parentElement.querySelector('.gridwidth-number');
   gridHeight = this.parentElement.querySelector('.gridheight-number');
   cellCount = this.parentElement.querySelector('.cellcount-number');
   cellSize = this.parentElement.querySelector('.cellsize-number');
 
   addHandlerShowHelp(handler) {
-    this.parentElement.addEventListener('mousedown', event => {
-      const clicked = event.target.closest('.help');
-      if (!clicked) return;
-
-      if (!event.target.classList.contains('information-link')) handler();
+    this.modalBackground.addEventListener('mousedown', event => {
+      handler();
     });
   }
 
-  toggleVisibility() {
-    this.parentElement.classList.toggle('hidden');
+  toggleVisibility(visible = false) {
+    this.parentElement.classList.add('hidden');
+    this.modalBackground.classList.add('hidden');
+
+    if (visible) {
+      this.parentElement.classList.remove('hidden');
+      this.modalBackground.classList.remove('hidden');
+    }
   }
 
   updateDetails(grid) {
